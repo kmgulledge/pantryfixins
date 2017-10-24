@@ -1,6 +1,9 @@
 console.log("||\u274c  Opened File [./app/routes.js]");
 console.log("\u26a0 == Finish Converting templage from EJS to Pug and have extend a Main.pug to keep code DRY");
 
+var Pantry = require("./models/pantry.js");
+
+
 module.exports = function (app, passport) {
 
   // ======================================================
@@ -49,6 +52,8 @@ module.exports = function (app, passport) {
   // we will want this protected so you have to be logged in to visit
   // we will use route middleware to verify this (the isLoggedIn function)
   app.get('/profile', isLoggedIn, function (req, res) {
+    // var stockItem = Pantry.find().where({"user": req.user});
+    // console.log("Items", stockItem);
     res.render('profile.pug', {
       user: req.user // get the user out of session and pass to template
     });// end res.render()
@@ -57,10 +62,30 @@ module.exports = function (app, passport) {
   // ======================================================
   // =====   Logout   =====================================
   // ======================================================
+
   app.get('/logout', function (req, res) {
     req.logout();
     res.redirect('/');
   });// end app.get('/logout')
+
+  // ======================================================
+  // =====   Pantry   =====================================
+  // ======================================================
+
+  app.post('/pantry', function (req, res) {
+    // console.log("adding to pantry", req)
+    newItem = new Pantry();
+    newItem.user = req.user.local.username;
+    newItem.item = req.body.item;
+    newItem.quantity = req.body.quantity;
+
+    newItem.save(function (err) {
+      if (err)
+        throw err;
+      return (null, newItem);
+    });
+
+  });// end app.get('/pantry')
 };// end module.exports()
 
 
