@@ -4,8 +4,13 @@
 	<title>My Pantry</title>
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 	script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')
 	script.
+	
+		setTimeout(responsiveVoice.speak("Welcome back #{user.local.username}. Let's find you something to make"), 3000);
+		console.log("#{myPantry}");
+
 			$("#pantryForm").on("submit", function(event) {
 				console.log("New Pantry Form submitted");
 				$.ajax({
@@ -26,8 +31,10 @@
 				$("#item").val("");
 				$("#quantity").val("");
 			});
+
 </head>
 <body>
+
 <div class="container">
 
 	<div class="page-header text-center">
@@ -71,6 +78,13 @@
 
 	<div class="row">
 		<h1>Pantry</h1>
+		#{pantry}
+		//- <ul>
+		//- each item in pantry
+		//- 	li #{pantry.item}
+		//- else
+		//- 	li There is nothing in your pantry
+		//- </ul>
 	</div>
 
 
