@@ -37,6 +37,7 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));// end app.use(session())
+app.use(express.static("public"));
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 // app.use(flash());

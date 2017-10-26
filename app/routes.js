@@ -5,6 +5,7 @@ var Pantry = require("./models/pantry.js");
 var databaseUrl = "pantry";
 var collections = ["pantries"];
 var mongojs = require("mongojs");
+var path = require("path");
 
 var db = mongojs(databaseUrl, collections);
 
@@ -56,30 +57,32 @@ module.exports = function (app, passport) {
   // we will want this protected so you have to be logged in to visit
   // we will use route middleware to verify this (the isLoggedIn function)
   app.get('/profile', isLoggedIn, function (req, res) {
-    var myPantry = [];
-    console.log("user", req.user.local.username);
+    
+    // res.sendFile(path.join(__dirname, "../public/profile.html"));
+    
+    // var myPantry = [];
+    // console.log("user", req.user.local.username);
 
-    db.pantries.find({ user: req.user.local.username}, function(err, data) {
-      // Log any errors if the server encounters one
-      if (err) {
-        console.log("error", err);
-      }
-      // Otherwise, send the result of this query to the browser
-      else {
-        // console.log("data", data);
-        for (var i = 0; i < data.length; i++) {
-          var eachItem = {
-            item: data[i].item,
-            quantity: data[i].quantity
-          };
-          myPantry.push(eachItem);
-        }
-      }
-      console.log("My pantry currently has: ", myPantry);
-    });
+    // db.pantries.find({ user: req.user.local.username}, function(err, data) {
+    //   // Log any errors if the server encounters one
+    //   if (err) {
+    //     console.log("error", err);
+    //   }
+    //   // Otherwise, send the result of this query to the browser
+    //   else {
+    //     for (var i = 0; i < data.length; i++) {
+    //       var eachItem = {
+    //         item: data[i].item,
+    //         quantity: data[i].quantity
+    //       };
+    //       myPantry.push(eachItem);
+    //     }
+    //   }
+    //   console.log("My pantry currently has: ", myPantry);
+    // });
     res.render('profile.pug', {
-      "user": req.user,
-      "pantry": myPantry
+      "user": req.user
+    //   "pantry": myPantry
     });// end res.render()
   });// end app.get('/profile')
 
@@ -95,6 +98,21 @@ module.exports = function (app, passport) {
   // ======================================================
   // =====   Pantry   =====================================
   // ======================================================
+
+  // API Call
+  app.get("/pantry", function(req, res) {
+    // Query: In our database, go to the animals collection, then "find" everything
+    db.pantries.find({"user": req.user.local.username}, function(error, found) {
+      // Log any errors if the server encounters one
+      if (error) {
+        console.log(error);
+      }
+      // Otherwise, send the result of this query to the browser
+      else {
+        res.json(found);
+      }
+    });
+  });
 
   app.post('/pantry', function (req, res) {
     // console.log("adding to pantry", req)
