@@ -2,6 +2,8 @@ console.log("||\u274c  Opened File [./app/routes.js]");
 console.log("\u26a0 == Finish Converting templage from EJS to Pug and have extend a Main.pug to keep code DRY");
 
 var Pantry = require("./models/pantry.js");
+var mongoose = require("mongoose");
+var pantries = mongoose.model('Pantry');
 var databaseUrl = "pantry";
 var collections = ["pantries"];
 var mongojs = require("mongojs");
@@ -16,6 +18,9 @@ module.exports = function (app, passport) {
   // ======================================================
   
   app.get('/', function (req, res) {
+    db.pantries.find({}, function (err, data){
+      console.log("Test: ", data);
+    });
     res.render('index.pug'); // load the index.pug file
   });// end app.get('/')
 
@@ -109,14 +114,17 @@ module.exports = function (app, passport) {
       }
       // Otherwise, send the result of this query to the browser
       else {
+        console.log("from the db: ", found);
         res.json(found);
       }
     });
   });
 
   app.post('/pantry', function (req, res) {
-    // console.log("adding to pantry", req)
-    db.pantries.find({ user: req.user.local.username, item: req.body.item}, function(err, data) {
+    // console.log("Adding to pantry", req);
+    console.log("User is: ", req.user.local.username);
+    console.log("Item is: ", req.body.item);
+    db.pantries.find({ "user": req.user.local.username, "item": req.body.item}, function(err, data) {
       // console.log(data);
       if(data.length === 0){
         // console.log("new item");

@@ -46,8 +46,9 @@ app.use(passport.session()); // persistent login sessions
 //=====   Configure Mongo Database   ======================
 //=========================================================
 
-mongoose.connect(configDB.prod_url, ({ useMongoClient: true })); // connect to our database
+mongoose.connect(configDB.url, { useMongoClient: true }); // connect to our database
 require('./config/passport')(passport); // pass passport for configuration
+mongoose.Promise = require('bluebird');
 
 //=========================================================
 //=====   Run Express App    ==============================
