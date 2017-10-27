@@ -9,7 +9,6 @@ function displayResults(pantry) {
 // First, empty the table
 $("#pantryTable").empty();
 
-// Then, for each entry of that json...
 pantry.forEach(function(item) {
     // Append each of the item's properties to the table
     $("#pantryTable").append("<tr><td>" + item.item + "</td>" +

@@ -116,18 +116,52 @@ module.exports = function (app, passport) {
 
   app.post('/pantry', function (req, res) {
     // console.log("adding to pantry", req)
-    newItem = new Pantry();
-    newItem.user = req.user.local.username;
-    newItem.item = req.body.item;
-    newItem.quantity = req.body.quantity;
+    db.pantries.find({ user: req.user.local.username, item: req.body.item}, function(err, data) {
+      // console.log(data);
+      if(data.length === 0){
+        // console.log("new item");
 
-    newItem.save(function (err) {
-      if (err)
-        throw err;
-      return (null, newItem);
-    });
+        newItem = new Pantry();
+        newItem.user = req.user.local.username;
+        newItem.item = req.body.item;
+        newItem.quantity = req.body.quantity;
 
-  });// end app.get('/pantry')
+        newItem.save(function (err) {
+          if (err)
+            throw err;
+          return (null, newItem);
+        });// end newItem.save()
+
+      } else {
+        // console.log("Current Item is in stock with :", data);
+        var qtyToAdd = parseFloat(req.body.quantity);
+        // console.log("qtyToAdd is : ", qtyToAdd);
+        var oldQty = parseFloat(data[0].quantity);
+        // console.log("oldQty is : ", oldQty);
+        // console.log("quantity should be: ", oldQty + qtyToAdd)
+
+
+        function changeDBQuantity(old, add){
+          var newQty = 0;
+          newQty = old + add;
+          return newQty;
+        }// end changeDBQuantity()
+
+        var newQtyToAddToDB = changeDBQuantity(oldQty, qtyToAdd);
+        // console.log("The db now has qty: ", newQtyToAddToDB);
+        
+        db.pantries.update(
+          {item: req.body.item},
+            {$set:
+              {
+                quantity: newQtyToAddToDB
+              }
+            }// end $set{}
+          )// end db.pantries.update()
+        }// end if/else()
+    })// end db.pantries.find()
+  });// end app.post('/pantry')
+  // });
 };// end module.exports()
 
 
