@@ -1,0 +1,130 @@
+
+.basic-card {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    margin-bottom: 1rem;
+    border: 1px solid #e6e6e6;
+    border-radius: 0;
+    background: #fefefe;
+    box-shadow: none;
+    overflow: hidden;
+    color: #0a0a0a;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+    -ms-grid-rows: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+    margin: 0 auto;
+    width: 50%;
+  }
+  
+  .basic-card > :last-child {
+    margin-bottom: 0;
+  }
+  
+  .basic-card-image {
+    grid-row-end: 4;
+    -ms-grid-row: 1;
+        grid-row-start: 1;
+  }
+  
+  .basic-card-image img {
+    width: 100%;
+  }
+  
+  .basic-card-content {
+    border: 0;
+    grid-row-start: 3 / 4;
+    margin: 0;
+    overflow: scroll;
+  }
+  
+
+  .rating-block {
+    padding: 2px 5px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  
+  .rating-block .ratings-type {
+    margin-right: 1rem;
+    margin-bottom: 0;
+  }
+  
+  .rating-block .rating-block {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .rating-block .rating-block-rating {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  
+  .rating-block .star {
+    cursor: pointer;
+    stroke: #cc4b37;
+  }
+  
+  .rating-block .rating-block-rating .star.selected polygon {
+    fill: #cc4b37;
+  }
+  
+  .rating-block .rating-block-rating.is-voted .star polygon {
+    fill: #cc4b37;
+  }
+  
+  .rating-block .rating-block-rating.is-voted .star.selected ~ .star polygon {
+    fill: transparent;
+  }
+  
+
+  .comment-section-container {
+    background-color: #fefefe;
+    padding: 1rem;
+  }
+  
+  .comment-section-author {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .comment-section-author .comment-section-name {
+    margin-left: 1rem;
+  }
+  
+  .comment-section-author .comment-section-name p {
+    margin-bottom: 0;
+  }
+  
+  .comment-section-box {
+    background-color: #e6e6e6;
+    padding: 1rem;
+  }
+  
+      
+  
+  
