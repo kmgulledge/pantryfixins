@@ -90,6 +90,47 @@ module.exports = function (app, passport) {
     });// end res.render()
   });// end app.get('/profile')
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Get the recipe page to show the selected page
+  app.get('/recipe', isLoggedIn, function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/recipe.html"));
+  });
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   // ======================================================
   // =====   Logout   =====================================
   // ======================================================
@@ -113,7 +154,7 @@ module.exports = function (app, passport) {
       }
       // Otherwise, send the result of this query to the browser
       else {
-        console.log("from the db: ", found);
+        // console.log("from the db: ", found);
         res.json(found);
       }
     });
@@ -121,10 +162,10 @@ module.exports = function (app, passport) {
 
   app.post('/pantry', function (req, res) {
     // console.log("Adding to pantry", req);
-    console.log("User is: ", req.user.local.username);
-    console.log("Item is: ", req.body.item);
-    db.pantries.find({ "user": req.user.local.username, "item": req.body.item}, function(err, data) {
-      // console.log(data);
+    // console.log("User is: ", req.user.local.username);
+    // console.log("Item is: ", req.body.item);
+    Pantry.find({ "user": req.user.local.username, "item": req.body.item}, function(err, data) {
+      // console.log("Checking if item is already in the Pantry, here is what we found in the database: ", data);
       if(data.length === 0){
         // console.log("new item");
 
@@ -140,7 +181,7 @@ module.exports = function (app, passport) {
         });// end newItem.save()
 
       } else {
-        // console.log("Current Item is in stock with :", data);
+        // console.log("Current Item is currently in stock with: ", data[0].quantity);
         var qtyToAdd = parseFloat(req.body.quantity);
         // console.log("qtyToAdd is : ", qtyToAdd);
         var oldQty = parseFloat(data[0].quantity);
@@ -155,18 +196,24 @@ module.exports = function (app, passport) {
         }// end changeDBQuantity()
 
         var newQtyToAddToDB = changeDBQuantity(oldQty, qtyToAdd);
-        // console.log("The db now has qty: ", newQtyToAddToDB);
+        // console.log("The db now has a qty of: ", newQtyToAddToDB);
         
-        db.pantries.update(
+        Pantry.update(
           {item: req.body.item},
             {$set:
               {
                 quantity: newQtyToAddToDB
               }
-            }// end $set{}
-          )// end db.pantries.update()
+            },// end $set{}
+            function(err, data) {
+              if(err){
+                console.log(err);
+              }
+              res.redirect("/profile");
+            }// end callback()
+          );// end db.pantries.update()
         }// end if/else()
-    })// end db.pantries.find()
+    });// end db.pantries.find()
   });// end app.post('/pantry')
   // });
 };// end module.exports()
