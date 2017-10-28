@@ -45,8 +45,9 @@ app.use(passport.session()); // persistent login sessions
 //=========================================================
 //=====   Configure Mongo Database   ======================
 //=========================================================
-
+console.log("Should be connecting to: ", configDB.url);
 mongoose.connect(configDB.url, { useMongoClient: true }); // connect to our database
+var db = mongoose.connection;
 require('./config/passport')(passport); // pass passport for configuration
 mongoose.Promise = require('bluebird');
 

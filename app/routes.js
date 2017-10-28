@@ -8,8 +8,7 @@ var databaseUrl = "pantry";
 var collections = ["pantries"];
 var mongojs = require("mongojs");
 var path = require("path");
-
-var db = mongojs(databaseUrl, collections);
+var db = mongoose.connection;
 
 module.exports = function (app, passport) {
 
@@ -18,7 +17,7 @@ module.exports = function (app, passport) {
   // ======================================================
   
   app.get('/', function (req, res) {
-    db.pantries.find({}, function (err, data){
+    Pantry.find({}, function (err, data){
       console.log("Test: ", data);
     });
     res.render('index.pug'); // load the index.pug file
@@ -107,7 +106,7 @@ module.exports = function (app, passport) {
   // API Call
   app.get("/pantry", function(req, res) {
     // Query: In our database, go to the animals collection, then "find" everything
-    db.pantries.find({"user": req.user.local.username}, function(error, found) {
+    Pantry.find({"user": req.user.local.username}, function(error, found) {
       // Log any errors if the server encounters one
       if (error) {
         console.log(error);
