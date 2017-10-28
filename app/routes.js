@@ -18,7 +18,7 @@ module.exports = function (app, passport) {
   
   app.get('/', function (req, res) {
     Pantry.find({}, function (err, data){
-      console.log("Test: ", data);
+      // console.log("Test: ", data);
     });
     res.render('index.pug'); // load the index.pug file
   });// end app.get('/')
