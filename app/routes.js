@@ -85,9 +85,11 @@ module.exports = function (app, passport) {
     //   }
     //   console.log("My pantry currently has: ", myPantry);
     // });
-    res.render('profile.pug', {
-      "user": req.user
-    });// end res.render()
+    // res.render('profile.pug', {
+    //   "user": req.user
+    // //   "pantry": myPantry
+    // });// end res.render()
+    res.sendFile(path.join(__dirname, "../public/user.html"));
   });// end app.get('/profile')
 
 
