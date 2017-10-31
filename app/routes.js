@@ -1,8 +1,9 @@
 console.log("||\u274c  Opened File [./app/routes.js]");
 console.log("\u26a0 == Finish Converting templage from EJS to Pug and have extend a Main.pug to keep code DRY");
 
-var Pantry = require("./models/pantry.js");
 var mongoose = require("mongoose");
+var Pantry = require("./models/pantry.js");
+var Recipe = require("./models/recipe.js");
 var pantries = mongoose.model('Pantry');
 var databaseUrl = "pantry";
 var collections = ["pantries"];
@@ -86,7 +87,6 @@ module.exports = function (app, passport) {
     // });
     res.render('profile.pug', {
       "user": req.user
-    //   "pantry": myPantry
     });// end res.render()
   });// end app.get('/profile')
 
@@ -189,11 +189,7 @@ module.exports = function (app, passport) {
         // console.log("quantity should be: ", oldQty + qtyToAdd)
 
 
-        function changeDBQuantity(old, add){
-          var newQty = 0;
-          newQty = old + add;
-          return newQty;
-        }// end changeDBQuantity()
+        
 
         var newQtyToAddToDB = changeDBQuantity(oldQty, qtyToAdd);
         // console.log("The db now has a qty of: ", newQtyToAddToDB);
@@ -231,3 +227,9 @@ function isLoggedIn(req, res, next) {
   // if they aren't redirect them to the home page
   res.redirect('/');
 }
+
+function changeDBQuantity(old, add){
+  var newQty = 0;
+  newQty = old + add;
+  return newQty;
+}// end changeDBQuantity()
