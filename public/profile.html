@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+	<title>My Pantry</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<script src="http://code.responsivevoice.org/responsivevoice.js"></script>
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script>
+	// setTimeout(responsiveVoice.speak("Welcome back Corey Let's find you something to make"), 3000);
+	</script>
+
+</head>
+<body>
+
+<div class="container">
+
+	<div class="page-header text-center">
+		<h1><span class="fa fa-anchor"></span>Welcome back #{user.local.username}</h1>
+		<a href="/logout" class="btn btn-default btn-sm">Logout</a>
+		<a href="/pantry" class="btn btn-default btn-sm">Veiw My Pantry</a>
+	</div>
+
+	<div class="row">
+
+		<div class="col-sm-12">
+			<div class="well">
+				<h3><span class="fa fa-user"></span> Local</h3>
+					<p>
+						<strong>ID</strong>: #{user._id} <br>
+						<strong>Username</strong>: #{user.local.username} <br>
+						<strong>Password</strong>: #{user.local.password} 
+					</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="well">
+			<h3>Add to my Pantry</h3>
+			<form id="pantryForm" method="post" action="/pantry">
+				<div class="form-group">
+					<label>Item</label>
+					<input id="item" type="text" class="form-control" name="item">
+				</div>
+				<div class="form-group">
+					<label>Qty</label>
+					<input id="quantity" type="text" class="form-control" name="quantity">
+				</div>
+				<button id="addToPantry" type="submit" class="btn btn-warning btn-lg">Add To My Pantry</button>
+			</form>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div id="pantryDiv">
+				<div id="pantryTable">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="./js/profile.js"></script>
+
+</body>
+</html>

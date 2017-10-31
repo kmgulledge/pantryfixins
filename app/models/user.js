@@ -20,7 +20,7 @@ var userSchema = mongoose.Schema({
     twitter          : {
         id           : String,
         token        : String,
-        displayName  : String,
+        display_name  : String,
         username     : String
     },
     google           : {

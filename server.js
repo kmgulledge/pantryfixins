@@ -37,6 +37,7 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));// end app.use(session())
+app.use(express.static("public"));
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 // app.use(flash());
@@ -44,9 +45,11 @@ app.use(passport.session()); // persistent login sessions
 //=========================================================
 //=====   Configure Mongo Database   ======================
 //=========================================================
-
-mongoose.connect(configDB.url, ({ useMongoClient: true })); // connect to our database
+console.log("Should be connecting to: ", configDB.url);
+mongoose.connect(configDB.url, { useMongoClient: true }); // connect to our database
+var db = mongoose.connection;
 require('./config/passport')(passport); // pass passport for configuration
+mongoose.Promise = require('bluebird');
 
 //=========================================================
 //=====   Run Express App    ==============================
