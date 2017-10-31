@@ -9,11 +9,24 @@ var recipeSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    rating:{
+    title: {
+        type: String,
+        required: true
+    },
+    cuisine: {
+        type: String,
+        required: false
+    },
+    image_url: {
+        type: String,
+        required: true,
+        default: "https://placehold.it/250x250"
+    },
+    rating: {
         type: Number,
         required: false,
         default: 0
-    },    
+    },
     ingredients: {
         type: [{}],
         required: true
@@ -24,7 +37,7 @@ var recipeSchema = mongoose.Schema({
     }
 });// end stockSchema
 
-recipeSchema.methods.findAll = function(user) {
+recipeSchema.methods.findAll = function (user) {
     Recipe.find({}), function (err, data) {
         console.log("Ran recipe.findAll()");
 
@@ -40,7 +53,7 @@ recipeSchema.methods.findAll = function(user) {
 }// end recipeSchema.methods.findAll()
 
 // =================================================== have function only search for recipes that you have all ingredients in stock
-recipeSchema.methods.findInStock = function(user) {
+recipeSchema.methods.findInStock = function (user) {
     Recipe.find({}), function (err, data) {
         console.log("Ran recipe.findInStock()");
 

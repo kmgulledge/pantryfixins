@@ -115,6 +115,24 @@ module.exports = function (app, passport) {
     res.sendFile(path.join(__dirname, "../public/recipe.html"));
   });
 
+  app.post('/recipe', isLoggedIn, function (req, res) {
+    console.log("Adding Recipe", req.body);
+    
+    var newRecipe = new Recipe();
+    newRecipe.author = req.user.local.username;
+    newRecipe.ingredients = req.body.ingredients;
+    newRecipe.instructions = req.body.instructions;
+
+    newRecipe.save(function (err) {
+      if (err)
+        throw err;
+      return (null, newRecipe);
+    });// end newRecipe.save()
+
+  });// end app.post('/recipe')
+  // });
+  // });
+
   
   
   
