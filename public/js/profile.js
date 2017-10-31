@@ -98,8 +98,7 @@ function displayResults(pantry) {
     // $("#pantryTable").append("<tr><td>" + item.item + "</td>" +
     //   "<td>" + item.quantity + "</td></tr>");
 
-    $("#pantryDiv").append("<ul style='list-style: none;'><li><input id='item1' type='checkbox'></input><label for='item1'></label>" + item.item + "</li></ul>")
-    $("#pantryDiv").append("<div class='column small-6'><h6 class='text-center'>" + 'Unit(s)' + "</h6> <div class='input-group input-number-group'> <div class='input-group-button'><span class='input-number-decrement'>-</span></div><input class='input-number' type='number' value='1' min='0' max='1000'><div class='input-group-button'><span class='input-number-increment'>+</span></div></div></div>");
+    $("#pantryDiv").append("<div class='callout' data-closable><button class='close-button' aria-label='Close alert' type='button' data-close><span aria-hidden='true'>&times;</span></button><li><input id='item1' type='checkbox'></input><label for='item1'></label>" + item.item + " " + item.quantity + "</li></div>")
 
   });
 }

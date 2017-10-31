@@ -19,45 +19,32 @@
 
 <div class="portfolio-resume-scrolling-container row">
   <div class="columns small-12 medium-5 portfolio-resume-overview">
-      <img class = "profile-pic" src="https://placehold.it/160x160" alt="profile-image"/>
     <div class="portfolio-resume-overview-content">
-      <h3 class="portfolio-resume-name">Name: </h3>
-      <p>A.K.A Pantry Chef</p>
+      <h3 class="portfolio-resume-name">Hello Pantry Chef</h3>
+      <p>Let's make something awesome!</p>
+      <!-- <a class="button primary expanded" href="#">Contact Me</a> -->
+      <form id="pantryForm" method="post" action="/pantry">
+          <label>Ingredients
+              <input type="text" id="item" class="form-control" name="item" placeholder="Enter Ingredients">
+          </label>
+
+         <label>Quantity
+              <input type="text" id="quantity" class="form-control" name="quantity" placeholder="Enter Quantity">
+          </label>
+         <button id="addToPantry" type="submit" class="success button">Add To My Pantry</button>
+      </form>
     </div>
   </div>
-</div> 
+  <div class="columns small-12 medium-7 portfolio-resume-scrolling">
+    <h3>Your Current List of Ingredients</h3>
+    <ul class="portfolio-resume-side-list" id="pantryDiv" style="list-style: none">
+      
+  </div>
+</div>
 
-
-
-  <!-- <div class="columns small-8 medium-7 portfolio-resume-scrolling"> -->
-   	 <div class="row">
-		<div class="columns small-6 medium-5">
-			<div class="well"> 
-                <h3>What's in Your Pantry?</h3>
-                <form id="pantryForm" method="post" action="/pantry">
-                    <div class="form-group">
-                        <label>Item</label>
-                        <!-- <input id="item" type="text" class="form-control" name="item"> -->
-                        <input type="text" id="item" name="item" placeholder="Enter ingredients.." class="animated-search-form">
-                    </div>
-                    <div class="form-group">
-                        <label>Qty</label>
-                        <input id="quantity" type="text" class="form-control" name="quantity">
-                    </div>
-                    <button id="addToPantry" type="submit" class="btn btn-warning btn-lg">Add To My Pantry</button>
-                </form>
-			<!-- </div>
-        </div> -->
-    
-		<!-- <div class="col-sm-6"> -->
-                <div id="pantryDiv">
-                    <!-- <div id="pantryTable"> -->
-                    <!-- </div> -->
-                </div>
-            </div>
-        </div> 
-    </div>
 <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://codepen.io/ZURBFoundation/pen/jmYLwq"></script>
 <script src="./js/profile.js"></script>
 
 </body>
