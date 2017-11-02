@@ -98,7 +98,12 @@ function displayResults(pantry) {
     // $("#pantryTable").append("<tr><td>" + item.item + "</td>" +
     //   "<td>" + item.quantity + "</td></tr>");
 
-    $("#pantryDiv").append("<div class='callout' data-closable><button class='close-button' aria-label='Close alert' type='button' data-close><span aria-hidden='true'>&times;</span></button><li><input id='item1' type='checkbox'></input><label for='item1'></label>" + item.item + " " + item.quantity + "</li></div>")
+    $("#pantryDiv").append("<div class='callout' data-closable><button class='close-button' aria-label='Close alert' type='button' data-close><span aria-hidden='true'>&times;</span></button><li><input id='item1' type='checkbox'></input><label for='item1'></label>" + item.item + " " + item.quantity + "</li></div>");
+
+    $(document).on("click", ".close-button", function(){
+      alert("I've been clicked!")
+        
+    })
 
   });
 }
