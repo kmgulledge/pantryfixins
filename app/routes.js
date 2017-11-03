@@ -340,6 +340,7 @@ Pantry.find({}), function(err, recipeArr) {
   
   });
 
+<<<<<<< HEAD
   app.post('/Pantry', function (req, res) {
     
     // Run API function to add to my Pantry
@@ -427,8 +428,19 @@ function getMyPantry(req, res) {
 
 
 
-
-
+function removeFromPantry() {
+  app.post('/pantry/delete', function (req, res) {
+    var ingredientID = req.body.id;
+  
+  
+   Pantry.remove({_id: ingredientID}, function(err, results){
+     if(err) throw err;
+      res.send(results);
+   });
+    
+  });
+  app.post('/pantry', function (req, res) {
+}
 
 
 
