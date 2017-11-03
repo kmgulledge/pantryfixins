@@ -13,8 +13,8 @@
 
 <form action="/action_page.php">
   <input type="text" id="recipeName" name="recipeName" placeholder="Insert a title for this Recipe">
-  <input type="text" id="recipeName" name="recipeCuisine" placeholder="Choose a Cuisine for this Recipe">
-  <input type="text" id="recipeName" name="recipeImage" placeholder="Insert a link to an image for this Recipe">
+  <input type="text" id="recipeCuisine" name="recipeCuisine" placeholder="Choose a Cuisine for this Recipe">
+  <input type="text" id="recipeImage" name="recipeImage" placeholder="Insert a link to an image for this Recipe">
   <br>
   <hr>
   Add one ingredient at a time!
@@ -25,8 +25,8 @@
 
 <form action="/action_page.php">
   Enter instructions one step at a Time!
-  <input type="text" id="instructionsInput" name="Ingredient" placeholder="Add instructions here one at a time!">
-  <input type="submit" value="Submit" id="instructionsSubmitBtn">
+  <input type="text" id="instructionInput" name="Ingredient" placeholder="Add instructions here one at a time!">
+  <input type="submit" value="Submit" id="instructionSubmitBtn">
 </form> 
 
 <div id ="ingredientsDiv">
@@ -194,11 +194,19 @@
     <script src="js/app.js"></script>
 
 <script>
-  var recipeObject = {
-    // quantity: 0,
-    ingredients:[],
-    instructions:[]
-  }
+  
+var title = document.getElementById("recipeName").value;
+var cuisine = document.getElementById("recipeCuisine").value;
+var image_url = document.getElementById("recipeImage").value;
+
+// Recipe Object Template
+var recipeObject = {
+    // title: "",
+    // cuisine: "",
+    // image_url: "",
+    ingredients: [],
+    instructions: []
+};
   
   var ingredientArray = [];
   
@@ -209,9 +217,9 @@
       quantity: 0,
       ingredient: ""
     }
-    var title = document.getElementById("recipeName").value;
-    var cuisine = document.getElementById("recipeCuisine").value;
-    var image_url = document.getElementById("recipeImage").value;
+    // var title = document.getElementById("recipeName").value;
+    // var cuisine = document.getElementById("recipeCuisine").value;
+    // var image_url = document.getElementById("recipeImage").value;
     var ingredient = document.getElementById("ingredientsForRecipe").value;
     newIngredient.ingredient = ingredient;
     var quantity = document.getElementById("ingredientQuantity").value;
@@ -229,16 +237,24 @@
   });
    
   
-   $("#instructionsSubmitBtn").click(function(){
+   $("#instructionSubmitBtn").click(function(){
     event.preventDefault();
-    var instruction = document.getElementById("instructionsInput").value;
+    var instruction = document.getElementById("instructionInput").value;
     recipeObject.instructions.push(instruction)
     document.getElementById("ingredientsDiv").append(instruction)
-    document.getElementById("instructionsInput").value = ""
+    document.getElementById("instructionInput").value = "";
   });
   
     $("#finalizeRecipe").click(function(){
     event.preventDefault();
+
+    var title = document.getElementById("recipeName").value;
+    var cuisine = document.getElementById("recipeCuisine").value;
+    var image_url = document.getElementById("recipeImage").value;
+
+    recipeObject.title = title;
+    recipeObject.cuisine = cuisine;
+    recipeObject.image_url = image_url;
     console.log(recipeObject);
     ingredientArray.push(recipeObject);
     console.log(ingredientArray);

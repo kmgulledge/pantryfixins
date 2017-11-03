@@ -35,7 +35,7 @@ var recipeSchema = mongoose.Schema({
         type: [{}],
         required: true
     }
-});// end stockSchema
+});// end pantrySchema
 
 recipeSchema.methods.findAll = function (user) {
     Recipe.find({}), function (err, data) {
