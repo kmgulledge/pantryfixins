@@ -1,4 +1,4 @@
-console.log("opened profile.js")
+console.log("opened profile.js");
 // First thing: ask the back end for json with all animals
 $.getJSON("/pantry", function (data) {
   // console.log(data);
