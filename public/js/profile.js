@@ -1,10 +1,12 @@
 console.log("opened profile.js")
 // First thing: ask the back end for json with all animals
-$.getJSON("/pantry", function (data) {
-  // console.log(data);
-  // Call our function to generate a table body
-  displayResults(data);
-});
+function init(){
+  $.getJSON("/pantry", function (data) {
+    // console.log(data);
+    // Call our function to generate a table body
+    displayResults(data);
+  });
+}
 
 
 
@@ -91,19 +93,34 @@ function restartInstructions() {
 
 function displayResults(pantry) {
   // First, empty the table
-  $("#pantryTable").empty();
+  $("#pantryDiv").empty();
 
-  pantry.forEach(function (item) {
+  pantry.forEach(function (item, idx) {
     // Append each of the item's properties to the table
     // $("#pantryTable").append("<tr><td>" + item.item + "</td>" +
     //   "<td>" + item.quantity + "</td></tr>");
 
-    $("#pantryDiv").append("<div class='callout' data-closable><button class='close-button' aria-label='Close alert' type='button' data-close><span aria-hidden='true'>&times;</span></button><li><input id='item1' type='checkbox'></input><label for='item1'></label>" + item.item + " " + item.quantity + "</li></div>");
+    $("#pantryDiv").append("<div class='callout' data-ingredient-id ='" + item._id + "' data-closable><button class='close-button' aria-label='Close alert' type='button' data-close><span aria-hidden='true'>&times;</span></button><li><input id='item" + idx + "' type='checkbox'></input><label for='item1'></label>" + item.item + "</li></div>");
 
-    $(document).on("click", ".close-button", function(){
-      alert("I've been clicked!")
-        
-    })
-
+    
   });
+
+  $(".portfolio-resume-side-list").on("click", ".close-button", function(){
+      var ingredientID = {
+        id: $(this).parent().attr("data-ingredient-id")
+      }
+
+      
+      $.post('/pantry/delete', ingredientID, function(res){
+          init();
+      })
+
+      
+
+
+      
+    })
 }
+  $(function(){
+    init();
+  })
