@@ -102,6 +102,7 @@ function displayResults(pantry) {
 
     $("#pantryDiv").append("<div class='callout' data-ingredient-id ='" + item._id + "' data-closable><button class='close-button' aria-label='Close alert' type='button' data-close><span aria-hidden='true'>&times;</span></button><li><input id='item" + idx + "' type='checkbox'></input><label for='item1'></label>" + item.item + "</li></div>");
 
+
     
   });
 
