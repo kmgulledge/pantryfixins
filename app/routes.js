@@ -14,10 +14,10 @@ var db = mongoose.connection;
 
 
 
-var myPantry = [];
-var myIngredients = [];
-var allRecipes = [];
-var nowRecipes = [];
+// var myPantry = [];
+// var myIngredients = [];
+// var allRecipes = [];
+// var nowRecipes = [];
 
 
 
@@ -115,11 +115,11 @@ module.exports = function (app, passport) {
 
 
 
-function findMyPantry() {
+// function findMyPantry() {
 
 
 
-}// end findMyPantry()
+// }// end findMyPantry()
 
 
 
@@ -202,7 +202,46 @@ Pantry.find({}), function(err, recipeArr) {
 
 
 
-  // app.get('/recipenow', isLoggedIn, function(req, res) {
+  app.get('/recipenow', isLoggedIn, function(req, res) {
+    
+    // gather Information needed to check what recipes we can make
+    var pantry = getMyPantryData(req, res);
+    var recipes = getAllRecipesData();
+
+    console.log("Pantry:", pantry);
+    console.log("Recipe:", recipes);
+
+    var wtf = getAllRecipesData(req, res).filter((obj, val) => {
+
+      console.log("-----New Recipe-----");
+      console.log("Recipe Ingredient Length:", obj.ingredients.length);
+      console.log("Value is:", val);
+      let temp = [];
+
+      obj.ingredients.forEach(recEl => {
+
+        pantry.forEach(panEl => {
+
+          if (recEl.ingredient == panEl.item) {
+            console.log("Recipe Element is in stock?:", recEl);
+            temp.push(recEl);
+          }// end if()
+
+        })// end pantry.forEach()
+
+      })// end obj.ingredients.forEach()
+
+      console.log("Does the recipe count match in pantry?:", temp.length == obj.ingredients.length);
+      if (temp.length == obj.ingredients.length) {
+        return obj;
+      }// end if()
+
+
+    }, []);// end wtf()
+  
+    console.log("Recipes Returned:", wtf);
+
+  });// end app.get('/recipenow')
     
   //   // Grab everything and put them in an array to use to search against
   //   Pantry.find({"user": req.user.local.username}, function(err, data) {
@@ -446,6 +485,30 @@ function getMyPantry(req, res) {
 
 
 
+function getMyPantryData(req, res) {
+  // Query: In our database, go to the animals collection, then "find" everything
+  var myPantry = [];
+  Pantry.find({"user": req.user.local.username}, function(err, data) {
+
+    // Log any errors if the server encounters one
+    if (err) {
+
+      console.log(err);
+
+    }// end if()
+
+    // Otherwise, send the result of this query to the browser
+    else {
+      console.log("Pantry Data:", data);
+      // console.log("from the db: ", data);
+      myPantry = data;
+      console.log("My Pantry has: ", myPantry);
+
+    }// end else()
+  });// end Pantry.find
+  return myPantry;
+}// end getMyPantry()
+
 
 
 
@@ -529,4 +592,23 @@ function getAllRecipes() {
       console.log("Recipe Results are:", data);
     }
   })// end Recipe.find()
+}// end getAllRecipes()
+
+
+
+
+
+
+function getAllRecipesData() {
+  var allRecipes = [];
+  Recipe.find({}, function(err, data){
+    if (err) {
+      console.log(err);
+    }
+    else {
+      console.log("Recipe Data:", data);
+      allrecipes = data;
+    }
+  })// end Recipe.find()
+  return allRecipes;
 }// end getAllRecipes()
