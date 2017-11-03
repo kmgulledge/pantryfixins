@@ -180,6 +180,16 @@ module.exports = function (app, passport) {
     });
   });
 
+  app.post('/pantry/delete', function (req, res) {
+    var ingredientID = req.body.id;
+
+  
+   Pantry.remove({_id: ingredientID}, function(err, results){
+     if(err) throw err;
+      res.send(results);
+   });
+    
+  });
   app.post('/pantry', function (req, res) {
     // console.log("Adding to pantry", req);
     // console.log("User is: ", req.user.local.username);
