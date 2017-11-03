@@ -333,21 +333,42 @@ Pantry.find({}), function(err, recipeArr) {
   // ======================================================
 
   // API Call
-  app.get("/Pantry", function(req, res) {
+  app.get("/pantry", function(req, res) {
 
     // Run API Function to pull my Pantry
     getMyPantry(req, res);
   
-  });
+  });// end app.post('/pantry')
 
-<<<<<<< HEAD
-  app.post('/Pantry', function (req, res) {
+  app.post('/pantry', function (req, res) {
     
     // Run API function to add to my Pantry
     addToPantry(req, res);
 
-  });// end app.post('/Pantry')
+  });// end app.post('/pantry')
+
+  app.post('/pantry/delete', function (req, res) {
+
+    // Grab ID of item to delete
+    var ingredientID = req.body.id;
+
+    // Run API function to add to my Pantry
+    removeFromPantry(req, res, ingredientID);
+
+  });// end app.post('/pantry')
 };// end module.exports()
+
+
+// app.post('/pantry/delete', function (req, res) {
+//   var ingredientID = req.body.id;
+
+
+//  Pantry.remove({_id: ingredientID}, function(err, results){
+//    if(err) throw err;
+//     res.send(results);
+//  });
+  
+// });
 
 
 // ======================================================
@@ -428,18 +449,13 @@ function getMyPantry(req, res) {
 
 
 
-function removeFromPantry() {
-  app.post('/pantry/delete', function (req, res) {
-    var ingredientID = req.body.id;
+function removeFromPantry(req, res, ingredientID) {
   
-  
-   Pantry.remove({_id: ingredientID}, function(err, results){
-     if(err) throw err;
-      res.send(results);
+   Pantry.remove({_id: ingredientID}, function(err, data){
+     if (err) throw err;
+      res.send(data);
    });
-    
-  });
-  app.post('/pantry', function (req, res) {
+
 }
 
 
