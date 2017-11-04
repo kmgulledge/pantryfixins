@@ -1,6 +1,10 @@
 console.log("||\u274c  Opened File [./app/routes.js]");
 console.log("\u26a0 == Finish Converting templage from EJS to Pug and have extend a Main.pug to keep code DRY");
 
+// ========================================================
+// =====   Dependencies   =================================
+// ========================================================
+
 var mongoose = require("mongoose");
 var Pantry = require("./models/Pantry.js");
 var Recipe = require("./models/recipe.js");
@@ -12,15 +16,9 @@ var mongojs = require("mongojs");
 var path = require("path");
 var db = mongoose.connection;
 
-
-
-var myPantry = [];
-// var myIngredients = [];
-var allRecipes = [];
-// var nowRecipes = [];
-
-
-
+// ========================================================
+// =====   Exports   ======================================
+// ========================================================
 
 module.exports = function (app, passport) {
 
@@ -28,10 +26,7 @@ module.exports = function (app, passport) {
   // =====   Home Page   ==================================
   // ======================================================
   
-  app.get('/', function (req, res) {
-    Pantry.find({}, function (err, data){
-      // console.log("Test: ", data);
-    });
+  app.get('/', function (req, res) {    
     res.render('index.pug'); // load the index.pug file
   });// end app.get('/')
 
@@ -74,6 +69,7 @@ module.exports = function (app, passport) {
   // we will use route middleware to verify this (the isLoggedIn function)
   app.get('/profile', isLoggedIn, function (req, res) {
     
+    // This will be needed if using PUG
     // res.sendFile(path.join(__dirname, "../public/profile.html"));
     
     // var myPantry = [];
@@ -100,243 +96,62 @@ module.exports = function (app, passport) {
     //   "user": req.user
     // //   "Pantry": myPantry
     // });// end res.render()
+
     res.sendFile(path.join(__dirname, "../public/user.html"));
   });// end app.get('/profile')
 
-
-
-
-
-
-
-
-
-
-
-
-
-// function findMyPantry() {
-
-
-
-// }// end findMyPantry()
-
-
-
-
-
-
-
-
-
-Pantry.find({}), function(err, recipeArr) {
-
-  var ingredientCheck = recipeArr.filter((obj, val)=>{
-      
-      console.log('New Recipe')
-      console.log(obj.ingredients.length)
-      console.log(val);
-      let tempArray = []
-      obj.ingredients.forEach(value => {
-          
-          pantry.forEach( pantryEl => {
-  
-              if (pantryEl.ingredient == value.ingredient ){
-                      console.log(pantryEl)
-                      tempArray.push(pantryEl)
-              }
-             
-          })
-          
-      })
-      console.log(tempArray.length == obj.ingredients.length)
-       if ( tempArray.length == obj.ingredients.length) {
-              return obj
-       }
-  
-  }, [])
-  
-  console.log(ingredientCheck)
-}
-
-
-  //    r.forEach((element)=>{
-  //         console.log('new reciepie')
-  
-  
-  
-  
-  //        element.ingredients.forEach((data)=>{
-  //             console.log(data.ingredient)
-  //             console.log(data.quantity)
-              
-  //        })
-  //     })
-  
-  
-  // }
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  // ======================================================
+  // =====   Recipes   ====================================
+  // ======================================================
 
   app.get('/recipenow', isLoggedIn, function(req, res) {
-    
-    // gather Information needed to check what recipes we can make
-    var pantry = getMyPantryData(req, res);
-    var recipes = getAllRecipesData();
 
-    console.log("Pantry:", myPantry);
-    console.log("Recipe:", allRecipes);
+    // Grab everything and put them in an array to use to search against
+    Pantry.find({"user": req.user.local.username}, function(err, pantryData) {
+      // Log any errors if the server encounters one
+      if (err) {
+        console.log(err);
+      }
+      // Otherwise, send the result of this query to the browser
+      else {
+        // console.log("Pantry data", pantryData);
+        Recipe.find({}, function(err, recipeData) {
+          // Log any errors if the server encounters one
+          if (err) {
+            console.log(err);
+          }// end if()
+          // Else, assign data to allRecipes Variable
+          else {
+            // console.log("Recipe Data: ", recipeData);
+            // console.log("Pantry Data again: ", pantryData);
 
-    // var wtf = recipes.filter((obj, val) => {
-
-    //   console.log("-----New Recipe-----");
-    //   console.log("Recipe Ingredient Length:", obj.ingredients.length);
-    //   console.log("Value is:", val);
-    //   let temp = [];
-
-    //   obj.ingredients.forEach(recEl => {
-
-    //     pantry.forEach(panEl => {
-
-    //       if (recEl.ingredient == panEl.item) {
-    //         console.log("Recipe Element is in stock?:", recEl);
-    //         temp.push(recEl);
-    //       }// end if()
-
-    //     })// end pantry.forEach()
-
-    //   })// end obj.ingredients.forEach()
-
-    //   console.log("Does the recipe count match in pantry?:", temp.length == obj.ingredients.length);
-    //   if (temp.length == obj.ingredients.length) {
-    //     return obj;
-    //   }// end if()
-
-
-    // }, []);// end wtf()
-  
-    // console.log("Recipes Returned:", wtf);
-
+            var wtf = recipeData.filter((obj, val) => {
+              console.log("-----New Recipe-----");
+              console.log("Recipe Ingredient Length:", obj.ingredients.length);
+              console.log("Value is:", val);
+              let temp = [];
+              obj.ingredients.forEach(recEl => {
+                pantryData.forEach(panEl => {
+                  if (recEl.ingredient == panEl.item) {
+                    console.log("Recipe Element is in stock?:", recEl);
+                    temp.push(recEl);
+                  }// end if()
+                })// end pantry.forEach()
+              })// end obj.ingredients.forEach()
+              console.log("Does the recipe count match in pantry?:", temp.length == obj.ingredients.length);
+              if (temp.length == obj.ingredients.length) {
+                return obj;
+              }// end if()
+            });// end recipeData.filter
+            console.log("Recipes Returned:", wtf);
+          }// end else()
+        });
+      }
+    });// end Pantry.find()
   });// end app.get('/recipenow')
 
-  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  //   // Grab everything and put them in an array to use to search against
-  //   Pantry.find({"user": req.user.local.username}, function(err, data) {
-  //     // Log any errors if the server encounters one
-  //     if (err) {
-  //       console.log(err);
-  //     }
-  //     // Otherwise, send the result of this query to the browser
-  //     else {
-  //       // myPantry = data;
-  //       // console.log("data", data);
-  //       // console.log("In the Pantry you have: ", myPantry);
-  //       data.forEach(value => {
-  //         myPantry.push(value);
-  //             Recipe.find({}, function(err, data) {
-  //               // Log any errors if the server encounters one
-  //               if (err) {
-  //                 console.log(err);
-  //               }
-  //               // Else, assign data to allRecipes Variable
-  //               else {
-          
-  //                 data.forEach(value => {
-          
-  //                   // console.log("Value: ", value);
-          
-  //                 });
-          
-  //                 allRecipes = data;
-          
-  //               }
-          
-  //             // console.log("All Recipes are: ", allRecipes);
-          
-  //             });// end Recipe.find()
-          
-  //             // console.log("All Pantries are: ", myPantry);
-          
-          
-          
-  //             var ingredientCheck = allRecipes.filter((a,b)=>{
-                
-  //               console.log('New Recipe')
-  //               console.log("a.ingredients.length ", a.ingredients.length)
-  //               console.log("b: ", b);
-  //               let temp = []
-  //               a.ingredients.forEach(value => {
-                    
-  //                   value.forEach( el => {
-          
-  //                       if (el.ingredient == value.ingredient ){
-  //                               console.log("el: ", el)
-  //                               temp.push(el)
-  //                       }
-                       
-  //                   })
-                    
-  //               })
-  //               // console.log(temp.length == a.ingredients.length)
-  //                if ( temp.length == a.ingredients.length) {
-  //                       return a
-  //                }
-  //           }, [])// end allRecipes.filter()
-  //           // console.log("ingredientCheck: ", ingredientCheck)
-  //         });// end data.forEach()
-  //       };// end else()
-  //     });// end Pantry.find()
-  //   });// end app.get()
-
-
-
-// Get the recipe page to show the selected page
+  // Get the recipe page to show the selected page
   app.get('/recipe', isLoggedIn, function (req, res) {
     res.sendFile(path.join(__dirname, "../public/recipe.html"));
   });
@@ -360,24 +175,7 @@ Pantry.find({}), function(err, recipeArr) {
       return (null, newRecipe);
     });// end newRecipe.save()
 
-  });// end app.post('/recipe')
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  });// end app.post('/recipe')  
   
   // ======================================================
   // =====   Logout   =====================================
@@ -419,19 +217,6 @@ Pantry.find({}), function(err, recipeArr) {
 
   });// end app.post('/pantry')
 };// end module.exports()
-
-
-// app.post('/pantry/delete', function (req, res) {
-//   var ingredientID = req.body.id;
-
-
-//  Pantry.remove({_id: ingredientID}, function(err, results){
-//    if(err) throw err;
-//     res.send(results);
-//  });
-  
-// });
-
 
 // ======================================================
 // =====   API Functions   =======================
@@ -522,10 +307,10 @@ function getMyPantryData(req, res) {
 
     // Otherwise, send the result of this query to the browser
     else {
-      console.log("Pantry Data:", data);
+      // console.log("Pantry Data:", data);
       // console.log("from the db: ", data);
-      myPantry = data;
-      console.log("My Pantry has: ", myPantry);
+      return data;
+      // console.log("My Pantry has: ", myPantry);
 
     }// end else()
   });// end Pantry.find
@@ -620,8 +405,6 @@ function getAllRecipes() {
 
 
 
-
-
 function getAllRecipesData() {
   // var allRecipes = [];
   Recipe.find({}, function(err, data){
@@ -629,12 +412,15 @@ function getAllRecipesData() {
       console.log(err);
     }
     else {
-      console.log("Recipe Data:", data);
-      allRecipes = data;
+      data.forEach(function(recipe){
+        foo.push(recipe);
+      });
+
+      console.log("Foo Data:", foo);
+      // foo = data;
+      return foo;
     }
   })// end Recipe.find()
   // return allRecipes;
 }// end getAllRecipes()
-
-
 
