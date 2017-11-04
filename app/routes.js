@@ -211,38 +211,61 @@ Pantry.find({}), function(err, recipeArr) {
     console.log("Pantry:", myPantry);
     console.log("Recipe:", allRecipes);
 
-    var wtf = getAllRecipesData(req, res).filter((obj, val) => {
+    // var wtf = recipes.filter((obj, val) => {
 
-      console.log("-----New Recipe-----");
-      console.log("Recipe Ingredient Length:", obj.ingredients.length);
-      console.log("Value is:", val);
-      let temp = [];
+    //   console.log("-----New Recipe-----");
+    //   console.log("Recipe Ingredient Length:", obj.ingredients.length);
+    //   console.log("Value is:", val);
+    //   let temp = [];
 
-      obj.ingredients.forEach(recEl => {
+    //   obj.ingredients.forEach(recEl => {
 
-        pantry.forEach(panEl => {
+    //     pantry.forEach(panEl => {
 
-          if (recEl.ingredient == panEl.item) {
-            console.log("Recipe Element is in stock?:", recEl);
-            temp.push(recEl);
-          }// end if()
+    //       if (recEl.ingredient == panEl.item) {
+    //         console.log("Recipe Element is in stock?:", recEl);
+    //         temp.push(recEl);
+    //       }// end if()
 
-        })// end pantry.forEach()
+    //     })// end pantry.forEach()
 
-      })// end obj.ingredients.forEach()
+    //   })// end obj.ingredients.forEach()
 
-      console.log("Does the recipe count match in pantry?:", temp.length == obj.ingredients.length);
-      if (temp.length == obj.ingredients.length) {
-        return obj;
-      }// end if()
+    //   console.log("Does the recipe count match in pantry?:", temp.length == obj.ingredients.length);
+    //   if (temp.length == obj.ingredients.length) {
+    //     return obj;
+    //   }// end if()
 
 
-    }, []);// end wtf()
+    // }, []);// end wtf()
   
-    console.log("Recipes Returned:", wtf);
+    // console.log("Recipes Returned:", wtf);
 
   });// end app.get('/recipenow')
-    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
   //   // Grab everything and put them in an array to use to search against
   //   Pantry.find({"user": req.user.local.username}, function(err, data) {
   //     // Log any errors if the server encounters one
