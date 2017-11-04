@@ -14,9 +14,9 @@ var db = mongoose.connection;
 
 
 
-// var myPantry = [];
+var myPantry = [];
 // var myIngredients = [];
-// var allRecipes = [];
+var allRecipes = [];
 // var nowRecipes = [];
 
 
@@ -208,8 +208,8 @@ Pantry.find({}), function(err, recipeArr) {
     var pantry = getMyPantryData(req, res);
     var recipes = getAllRecipesData();
 
-    console.log("Pantry:", pantry);
-    console.log("Recipe:", recipes);
+    console.log("Pantry:", myPantry);
+    console.log("Recipe:", allRecipes);
 
     var wtf = getAllRecipesData(req, res).filter((obj, val) => {
 
@@ -487,7 +487,7 @@ function getMyPantry(req, res) {
 
 function getMyPantryData(req, res) {
   // Query: In our database, go to the animals collection, then "find" everything
-  var myPantry = [];
+  // var myPantry = [];
   Pantry.find({"user": req.user.local.username}, function(err, data) {
 
     // Log any errors if the server encounters one
@@ -506,7 +506,7 @@ function getMyPantryData(req, res) {
 
     }// end else()
   });// end Pantry.find
-  return myPantry;
+  // return myPantry;
 }// end getMyPantry()
 
 
@@ -600,15 +600,18 @@ function getAllRecipes() {
 
 
 function getAllRecipesData() {
-  var allRecipes = [];
+  // var allRecipes = [];
   Recipe.find({}, function(err, data){
     if (err) {
       console.log(err);
     }
     else {
       console.log("Recipe Data:", data);
-      allrecipes = data;
+      allRecipes = data;
     }
   })// end Recipe.find()
-  return allRecipes;
+  // return allRecipes;
 }// end getAllRecipes()
+
+
+
