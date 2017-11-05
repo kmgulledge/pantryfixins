@@ -16,7 +16,9 @@ function displayRecipes(recipe) {
     $("#recipeNowDiv").empty();
 
     recipe.forEach(function (item, idx) {
-        $("#recipeNowDiv").append("<div>Recipe</div>");
+        console.log("item:", item);
+        console.log("idx:", idx);
+        $("#recipeNowDiv").append("<div>" + item.title + "</div>");
     });
 }
 

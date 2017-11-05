@@ -414,7 +414,7 @@ function getNowRecipes(req, res) {
     }
     // Otherwise, send the result of this query to the browser
     else {
-      console.log("Pantry data", pantryData);
+      console.log("getNowRecipes Pantry data", pantryData);
       Recipe.find({}, function(err, recipeData) {
         // Log any errors if the server encounters one
         if (err) {
@@ -442,9 +442,10 @@ function getNowRecipes(req, res) {
             if (temp.length == obj.ingredients.length) {
               return obj;
             }// end if()
-            console.log("wtf is:", wtf());
-            res.json(wtf);
           });// end recipeData.filter
+          
+          console.log("wtf is:", wtf);
+          res.json(wtf);
         }// end else()
       });// end Recipe.find()
     }// else()
