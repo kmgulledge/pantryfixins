@@ -6,7 +6,7 @@ console.log("\u26a0 == Finish Converting templage from EJS to Pug and have exten
 // ========================================================
 
 var mongoose = require("mongoose");
-var Pantry = require("./models/Pantry.js");
+var Pantry = require("./models/pantry.js");
 var Recipe = require("./models/recipe.js");
 var pantries = mongoose.model('Pantry');
 var recipes = mongoose.model('Recipe');
