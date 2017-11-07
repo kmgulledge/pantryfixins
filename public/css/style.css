@@ -1,0 +1,60 @@
+body {
+  background-color: #808080;
+  opacity: 0.5;
+}
+
+.video-background { 
+  position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -100;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+}
+
+h1 {
+  font-family: 'Homemade Apple', cursive;
+  font-size: 88px;
+  text-align: center;
+  color: #202020;
+  opacity: 0.9;
+}
+
+#logo {
+  opacity: 0.9;
+  border: 2px solid black;
+  margin-left: 42%;
+  margin-top: 5%;
+  height: 150px;
+}
+
+p {
+  font-family: 'Homemade Apple', cursive;
+  font-size: 28px;
+  text-align: center;
+  color: #990000;
+  border-bottom: 1px solid #404040;
+  padding-bottom: 20px;
+}
+
+#signupBtn, #loginBtn {
+  font-size: 16px;
+  color: #000000;
+}
+
+#buttons {
+  position: absolute;
+  top: 2px;
+  right: 10px;
+}
+
+#signupBtn:hover, #loginBtn:hover {
+  color: white;
+}

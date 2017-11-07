@@ -7,30 +7,60 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Homemade+Apple" rel="stylesheet">
+
     <title>User Page</title>
-    <link rel="stylesheet" href="css/foundation.css">
-    <link rel="stylesheet" href="css/app.css">
+    //- <link rel="stylesheet" href="css/foundation.css">
+    //- <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
-<ul class="menu menu-hover-lines">
-  <li class="active"><a href="../../index.pug">Home</a></li>
-  <li><a href="profile.html">Profile</a></li>
-  <li><a href="#">Ingredient Lists</a></li>
-  <li><a href="#">Favorite Recipes</a></li>
-  <li><a href="recipe.html">Saved Recipes</a></li>
-</ul>
+//- <ul class="menu menu-hover-lines">
+//-   <li class="active"><a href="../../index.pug">Home</a></li>
+//-   <li><a href="profile.html">Profile</a></li>
+//-   <li><a href="#">Ingredient Lists</a></li>
+//-   <li><a href="#">Favorite Recipes</a></li>
+//-   <li><a href="recipe.html">Saved Recipes</a></li>
+//- </ul>
 
-<div class="portfolio-resume-scrolling-container row">
-  <div class="columns small-12 medium-5 portfolio-resume-overview">
-    <div class="portfolio-resume-overview-content">
-      <h3 class="portfolio-resume-name">Pantry Fixins</h3>
-      <p>Login or Register With: </p>
+//- <div class="portfolio-resume-scrolling-container row">
+//-   <div class="columns small-12 medium-5 portfolio-resume-overview">
+//-     <div class="portfolio-resume-overview-content">
+//-       <h3 class="portfolio-resume-name">Pantry Fixins</h3>
+//-       <p>Login or Register With: </p>
 
 
-        <a href="/login" class="success button"><span class="fa fa-user"></span> Local Login</a>
-        <a href="/signup" class="success button"><span class="fa fa-user"></span> Local Signup</a>
-    </div>
+//-         <a href="/login" class="success button"><span class="fa fa-user"></span> Local Login</a>
+//-         <a href="/signup" class="success button"><span class="fa fa-user"></span> Local Signup</a>
+//-     </div>
 
+
+
+
+<video id="videoLoop" class="video-background"autoplay muted type="video/MOV"></video>
+
+<br>
+
+<div id="buttons">
+  <a href="/login" id="loginBtn"><span class="fa fa-user"></span> Login</a>  |  
+  <a href="/signup" id="signupBtn"><span class="fa fa-user"></span> Signup</a>
 </div>
+    
+  <img id="logo" src="media/spoon_fork_knife.jpg"></img>
+
+  <br>
+  <br>
+
+  <p>home-cooking inspiration</p>
+
+  <br>
+
+  <h1>PantryFixins</h1>
+
+<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script src="./js/video.js"></script>
+
 </body>
 </html>
