@@ -22,6 +22,18 @@ var recipeSchema = mongoose.Schema({
         required: true,
         default: "https://placehold.it/250x250"
     },
+    total_time: {
+        type: Number,
+        required: false
+    },
+    prep_time: {
+        type: Number,
+        required: false
+    },
+    cook_time: {
+        type: Number,
+        required: false
+    },
     rating: {
         type: Number,
         required: false,

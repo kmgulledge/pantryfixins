@@ -211,10 +211,10 @@
   position: absolute;
   top: 0;
   left: 0;
-  background-image: url(../images/Recipe-book.jpg);
+  background-image: url(../images/spices.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: 0.3;
+  opacity: 0.4;
   z-index: 0;
 }
 
@@ -308,7 +308,9 @@
   margin-left: 0.3rem;
 }
 
-
+#recipeTitle {
+  text-align: center;
+}
 
 
 

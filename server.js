@@ -9,7 +9,6 @@ var app = express();
 var port = process.env.PORT || 3000;
 var mongoose = require('mongoose');
 var passport = require('passport');
-// var flash = require('connect-flash'); // Store messages in session storage to display to user
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -40,12 +39,11 @@ app.use(session({
 app.use(express.static("public"));
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
-// app.use(flash());
 
 //=========================================================
 //=====   Configure Mongo Database   ======================
 //=========================================================
-console.log("Should be connecting to: ", configDB.url);
+
 mongoose.connect(configDB.url, { useMongoClient: true }); // connect to our database
 var db = mongoose.connection;
 require('./config/passport')(passport); // pass passport for configuration

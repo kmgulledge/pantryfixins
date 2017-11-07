@@ -6,7 +6,7 @@ console.log("\u26a0 == Finish Converting templage from EJS to Pug and have exten
 // ========================================================
 
 var mongoose = require("mongoose");
-var Pantry = require("./models/Pantry.js");
+var Pantry = require("./models/pantry.js");
 var Recipe = require("./models/recipe.js");
 var pantries = mongoose.model('Pantry');
 var recipes = mongoose.model('Recipe');
@@ -26,8 +26,9 @@ module.exports = function (app, passport) {
   // =====   Home Page   ==================================
   // ======================================================
   
-  app.get('/', function (req, res) {    
-    res.render('index.pug'); // load the index.pug file
+  app.get('/', function (req, res) {
+    res.render('login.pug');
+    // res.sendFile(path.join(__dirname, "../public/index.html")); // load the index.pug file
   });// end app.get('/')
 
   // ======================================================
@@ -36,7 +37,6 @@ module.exports = function (app, passport) {
   
   // show the login form
   app.get('/login', function (req, res) {
-    // render the page and pass in any flash data if it exists
     res.render('login.pug');
   });// end app.get('/login')
 
@@ -126,29 +126,48 @@ module.exports = function (app, passport) {
             // console.log("Pantry Data again: ", pantryData);
 
             var wtf = recipeData.filter((obj, val) => {
-              console.log("-----New Recipe-----");
+              console.log("-----New Recipe-----:", obj.title);
               console.log("Recipe Ingredient Length:", obj.ingredients.length);
               console.log("Value is:", val);
               let temp = [];
               obj.ingredients.forEach(recEl => {
                 pantryData.forEach(panEl => {
                   if (recEl.ingredient == panEl.item) {
-                    console.log("Recipe Element is in stock?:", recEl);
+                    // console.log("Recipe Element is in stock?:", recEl);
                     temp.push(recEl);
                   }// end if()
-                })// end pantry.forEach()
-              })// end obj.ingredients.forEach()
-              console.log("Does the recipe count match in pantry?:", temp.length == obj.ingredients.length);
+                });// end pantry.forEach()
+              });// end obj.ingredients.forEach()
+              // console.log("Does the recipe count match in pantry?:", temp.length == obj.ingredients.length);
               if (temp.length == obj.ingredients.length) {
                 return obj;
               }// end if()
+              // res.json(wtf);
             });// end recipeData.filter
-            console.log("Recipes Returned:", wtf);
+            // console.log("Recipes Returned:", wtf);
+            res.sendFile(path.join(__dirname, "../public/recipeNow.html"));
           }// end else()
-        });
-      }
+        });// end Recipe.find()
+      }// end else()
     });// end Pantry.find()
   });// end app.get('/recipenow')
+
+  app.get('/recipenow/data', isLoggedIn, function(req, res) {
+
+    getNowRecipes(req, res);
+
+  });// end app.get('/recipenow/data')
+
+  app.get("/pantry", function(req, res) {
+    
+        // Run API Function to pull my Pantry
+        getMyPantry(req, res);
+      
+      });// end app.post('/pantry')
+
+
+
+
 
 
   // Get the recipe page to show the selected page
@@ -281,8 +300,8 @@ function getMyPantry(req, res) {
 
     // Otherwise, send the result of this query to the browser
     else {
-
-      // console.log("from the db: ", data);
+      data = data.sort();
+      console.log("from the db: ", data);
       res.json(data);
 
     }// end else()
@@ -383,9 +402,50 @@ function addToPantry(req, res) {
     });// end db.pantries.find()
 }// end addToPantry()
 
+function getNowRecipes(req, res) {
 
+  // Grab everything and put them in an array to use to search against
+  Pantry.find({"user": req.user.local.username}, function(err, pantryData) {
+    // Log any errors if the server encounters one
+    if (err) {
+      console.log(err);
+    }
+    // Otherwise, send the result of this query to the browser
+    else {
+      // console.log("getNowRecipes Pantry data", pantryData);
+      Recipe.find({}, function(err, recipeData) {
+        // Log any errors if the server encounters one
+        if (err) {
+          console.log(err);
+        }// end if()
+        // Else, assign data to allRecipes Variable
+        else {
+          // console.log("Recipe Data: ", recipeData);
+          // console.log("Pantry Data again: ", pantryData);
 
-
+          var wtf = recipeData.filter((obj, val) => {
+            let temp = [];
+            obj.ingredients.forEach(recEl => {
+              pantryData.forEach(panEl => {
+                if (recEl.ingredient == panEl.item) {
+                  // console.log("Recipe Element is in stock?:", recEl);
+                  temp.push(recEl);
+                }// end if()
+              });// end pantry.forEach()
+            });// end obj.ingredients.forEach()
+            // console.log("Does the recipe count match in pantry?:", temp.length == obj.ingredients.length);
+            if (temp.length == obj.ingredients.length) {
+              return obj;
+            }// end if()
+          });// end recipeData.filter
+          
+          // console.log("wtf is:", wtf);
+          res.json(wtf);
+        }// end else()
+      });// end Recipe.find()
+    }// else()
+  });// end Pantry.find()
+}// end req, res
 
 
 
@@ -399,28 +459,29 @@ function getAllRecipes() {
     else {
       console.log("Recipe Results are:", data);
     }
-  })// end Recipe.find()
+  });// end Recipe.find()
 }// end getAllRecipes()
 
 
 
 
-function getAllRecipesData() {
-  // var allRecipes = [];
-  Recipe.find({}, function(err, data){
-    if (err) {
-      console.log(err);
-    }
-    else {
-      data.forEach(function(recipe){
-        foo.push(recipe);
-      });
+// function getAllRecipesData() {
+//   var allRecipes = [];
+//   Recipe.find({}, function(err, data){
+//     if (err) {
+//       console.log(err);
+//     }
+//     else {
+//       // data.forEach(function(recipe){
+//         // foo.push(recipe);
+//         allRecipes = data;
+//       });
 
-      console.log("Foo Data:", foo);
-      // foo = data;
-      return foo;
-    }
-  })// end Recipe.find()
-  // return allRecipes;
-}// end getAllRecipes()
+//       console.log("Foo Data:", foo);
+//       // foo = data;
+//       return allRecipes;
+//     }
+//   });// end Recipe.find()
+//   // return allRecipes;
+// }// end getAllRecipes()
 

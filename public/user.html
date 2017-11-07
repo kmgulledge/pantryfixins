@@ -7,22 +7,23 @@
     <title>User Page</title>
     <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Homemade+Apple" rel="stylesheet">
 </head>
-<body>
+<body id="user">
 <ul class="menu menu-hover-lines">
-  <li class="active"><a href="#">Home</a></li>
+  <li class="active"><a href="../../index.pug">Home</a></li>
   <li><a href="/profile">Profile</a></li>
-  <li><a href="#">Ingredient Lists</a></li>
-  <li><a href="#">Favorite Recipes</a></li>
+  <li><a href="user.html">Ingredient Lists</a></li>
+  <li><a href="create.html">Create a Recipe</a></li>
   <li><a href="recipe.html">Saved Recipes</a></li>
   <li><a href="/recipenow">Make A Recipe Now</a></li>
 </ul>
 
 <div class="portfolio-resume-scrolling-container row">
   <div class="columns small-12 medium-5 portfolio-resume-overview">
+      <h3 id="userTitle" class="portfolio-resume-name">My Pantry</h3>
     <div class="portfolio-resume-overview-content">
-      <h3 class="portfolio-resume-name">Hello Pantry Chef</h3>
-      <p>Let's make something awesome!</p>
       <!-- <a class="button primary expanded" href="#">Contact Me</a> -->
       <form id="pantryForm" method="post" action="/pantry">
           <label>Ingredients
@@ -37,7 +38,7 @@
     </div>
   </div>
   <div class="columns small-12 medium-7 portfolio-resume-scrolling">
-    <h3>Your Current List of Ingredients</h3>
+    <h3 id="pantryIngredients">Ingredients List</h3>
     <ul class="portfolio-resume-side-list" id="pantryDiv" style="list-style: none">
       
   </div>

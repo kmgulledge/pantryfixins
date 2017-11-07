@@ -1,0 +1,117 @@
+#index {
+  background-color: #A0A0A0;
+  opacity: 0.6;
+}
+
+.video-background { 
+  position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -100;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+}
+
+#pantryTitle {
+  font-family: 'Homemade Apple', cursive;
+  font-size: 88px;
+  text-align: center;
+  color: #000000;
+  opacity: 0.9;
+}
+
+#logo {
+  opacity: 0.9;
+  border: 2px solid black;
+  margin-left: 42%;
+  margin-top: 5%;
+  height: 150px;
+}
+
+#homeCook {
+  font-family: 'Homemade Apple', cursive;
+  font-size: 28px;
+  text-align: center;
+  color: #990000;
+  border-bottom: 1px solid #404040;
+  padding-bottom: 20px;
+}
+
+#signupBtn, #loginBtn {
+  font-size: 16px;
+  color: #000000;
+}
+
+#buttons {
+  position: absolute;
+  top: 2px;
+  right: 10px;
+}
+
+#signupBtn:hover, #loginBtn:hover {
+  color: white;
+}
+
+/*Login and SignUp */
+
+#login, #signup {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url(../images/Recipe-book2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -100;
+}
+
+#loginContainer, #signupContainer {
+  margin-top: 3%;
+  background-color:#F2F0F0;
+  width: 40%;
+  border: 2px solid gray;
+}
+
+#loginSubmitBtn, #signupSubmitBtn {
+  background-color: #990000;
+}
+
+#getCooking {
+  font-family: 'Homemade Apple', cursive;
+  margin-left: 22%;
+  margin-top: 9%;
+}
+
+/* User */
+
+#user {
+  background-color: #A0A0A0;
+}
+
+#userTitle {
+  font-family: 'Homemade Apple', cursive;
+  font-size: 62px;
+  margin-right: 5%;
+}
+
+label {
+  font-weight: bold;
+}
+
+#addToPantry {
+  border-radius: 4px;
+  background-color: #A62222;
+}
+
+#pantryIngredients {
+  font-family: 'Homemade Apple', cursive;
+  margin-left: 5%;
+} 
