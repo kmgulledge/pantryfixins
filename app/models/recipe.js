@@ -24,15 +24,15 @@ var recipeSchema = mongoose.Schema({
     },
     total_time: {
         type: Number,
-        required false
+        required: false
     },
     prep_time: {
         type: Number,
-        required false
+        required: false
     },
     cook_time: {
         type: Number,
-        required false
+        required: false
     },
     rating: {
         type: Number,
