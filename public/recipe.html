@@ -1,289 +1,233 @@
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
+
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipes</title>
-    <link rel="stylesheet" href="css/foundation.css">
-    <link rel="stylesheet" href="css/app.css">
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipes</title>
+  <link rel="stylesheet" href="css/foundation.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <!-- <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script> -->
+
+  <!-- <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link> -->
+  <!-- <script src='https://cdn.rawgit.com/pguso/jquery-plugin-circliful/master/js/jquery.circliful.min.js'></script> -->
+  <!-- <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script> -->
 </head>
+
 <body>
-       
 
-<form action="/action_page.php">
-  <input type="text" id="recipeName" name="recipeName" placeholder="Insert a title for this Recipe">
-  <input type="text" id="recipeCuisine" name="recipeCuisine" placeholder="Choose a Cuisine for this Recipe">
-  <input type="text" id="recipeImage" name="recipeImage" placeholder="Insert a link to an image for this Recipe">
-  <br>
-  <hr>
-  Add one ingredient at a time!
-  <input type="text" id="ingredientsForRecipe" name="Ingredient" placeholder="Add ingredient here">
-  <input type="text" id="ingredientQuantity" name="IngredientQty" placeholder="Add quantity">
-  <input type="submit" value="Submit" id="ingredientSubmitBtn">
-</form> 
 
-<form action="/action_page.php">
-  Enter instructions one step at a Time!
-  <input type="text" id="instructionInput" name="Ingredient" placeholder="Add instructions here one at a time!">
-  <input type="submit" value="Submit" id="instructionSubmitBtn">
-</form> 
+  <form action="/action_page.php">
+    <input id="ingredientsDD" />
+    <input type="submit" name="go" value="go!" />
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <input type="text" id="recipeName" name="recipeName" placeholder="Insert a title for this Recipe">
+    <input type="text" id="recipeCuisine" name="recipeCuisine" placeholder="Choose a Cuisine for this Recipe">
+    <input type="text" id="recipeImage" name="recipeImage" placeholder="Insert a link to an image for this Recipe">
+    <br>
+    <hr> Add one ingredient at a time!
+    <input type="text" id="ingredientsForRecipe" name="Ingredient" placeholder="Add ingredient here">
+    <input type="text" id="ingredientQuantity" name="IngredientQty" placeholder="Add quantity">
+    <input type="submit" value="Submit" id="ingredientSubmitBtn">
+  </form>
 
-<div id ="ingredientsDiv">
+  <form action="/action_page.php">
+    Enter instructions one step at a Time!
+    <input type="text" id="instructionInput" name="Ingredient" placeholder="Add instructions here one at a time!">
+    <input type="submit" value="Submit" id="instructionSubmitBtn">
+  </form>
 
-</div>
+  <div id="ingredientsDiv">
 
-<!-- <p>Hello</p> -->
-<div>
+  </div>
+
+  <!-- <p>Hello</p> -->
+  <div>
     <button id="finalizeRecipe">Finalize Recipe</button>
-</div>
+  </div>
 
 
 
 
-    <div class="basic-card">
-            <div class="basic-card-image">
-                <img src="images/Recipe-book.jpg">
-                <h2>Recipe Title</h2>
+  <div class="basic-card">
+    <div class="basic-card-image">
+      <img src="images/Recipe-book.jpg">
+      <h2>Recipe Title</h2>
+    </div>
+    <div class="basic-card-content content callout secondary">
+      <h5>Ingredients</h5>
+      <ul style="list-style-type:circle">
+        <li>Coffee</li>
+        <li>Tea</li>
+        <li>Milk</li>
+      </ul>
+    </div>
+    <div class="basic-card-content content callout secondary">
+      <h5>Cooking Instructions</h5>
+      <ol type="1">
+        <li>Aenean non erat vitae ligula vestibulum hendrerit.</li>
+        <li>Duis sollicitudin nulla vel scelerisque volutpat.</li>
+        <li>Praesent efficitur mi quis sagittis tempus.</li>
+        <li>Donec id turpis a diam imperdiet dapibus.</li>
+        <li>Cras ac augue vitae tortor porta commodo ut ac magna.</li>
+        <li>Fusce ornare quam at finibus porttitor.</li>
+      </ol>
+    </div>
+
+    <div class="card rating">
+      <div class="card-section">
+        <p class="ratings-card-header">Rate this Recipe</p>
+        <div class="rating-block">
+          <p class="ratings-type">Ease of Preparation</p>
+          <div class="rating-block-rating" data-rating>
+            <div class="star">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="37" viewBox="0 0 40 37">
+                <polygon fill="none" points="272 30 260.244 36.18 262.489 23.09 252.979 13.82 266.122 11.91 272 0 277.878 11.91 291.021 13.82 281.511 23.09 283.756 36.18"
+                  transform="translate(-252)" />
+              </svg>
             </div>
-            <div class="basic-card-content content callout secondary">
-                <h5>Ingredients</h5>
-                <ul style="list-style-type:circle">
-                        <li>Coffee</li>
-                        <li>Tea</li>
-                        <li>Milk</li>
-                      </ul>
+            <div class="star">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="37" viewBox="0 0 40 37">
+                <polygon fill="none" points="272 30 260.244 36.18 262.489 23.09 252.979 13.82 266.122 11.91 272 0 277.878 11.91 291.021 13.82 281.511 23.09 283.756 36.18"
+                  transform="translate(-252)" />
+              </svg>
             </div>
-            <div class="basic-card-content content callout secondary">
-                    <h5>Cooking Instructions</h5>
-                    <ol type="1">
-                            <li>Aenean non erat vitae ligula vestibulum hendrerit.</li>
-                            <li>Duis sollicitudin nulla vel scelerisque volutpat.</li>
-                            <li>Praesent efficitur mi quis sagittis tempus.</li>
-                            <li>Donec id turpis a diam imperdiet dapibus.</li>
-                            <li>Cras ac augue vitae tortor porta commodo ut ac magna.</li>
-                            <li>Fusce ornare quam at finibus porttitor.</li>
-                          </ol>
-                </div>
-
-            <div class="card rating">
-                    <div class="card-section">
-                      <p class="ratings-card-header">Rate this Recipe</p>
-                      <div class="rating-block">
-                        <p class="ratings-type">Ease of Preparation</p>
-                        <div class="rating-block-rating" data-rating>
-                          <div class="star">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="37" viewBox="0 0 40 37">
-                              <polygon fill="none" points="272 30 260.244 36.18 262.489 23.09 252.979 13.82 266.122 11.91 272 0 277.878 11.91 291.021 13.82 281.511 23.09 283.756 36.18" transform="translate(-252)"/>
-                            </svg>
-                          </div>
-                          <div class="star">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="37" viewBox="0 0 40 37">
-                              <polygon fill="none" points="272 30 260.244 36.18 262.489 23.09 252.979 13.82 266.122 11.91 272 0 277.878 11.91 291.021 13.82 281.511 23.09 283.756 36.18" transform="translate(-252)"/>
-                            </svg>
-                          </div>
-                          <div class="star">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="37" viewBox="0 0 40 37">
-                              <polygon fill="none" points="272 30 260.244 36.18 262.489 23.09 252.979 13.82 266.122 11.91 272 0 277.878 11.91 291.021 13.82 281.511 23.09 283.756 36.18" transform="translate(-252)"/>
-                            </svg>
-                          </div>
-                          <div class="star">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="37" viewBox="0 0 40 37">
-                              <polygon fill="none" points="272 30 260.244 36.18 262.489 23.09 252.979 13.82 266.122 11.91 272 0 277.878 11.91 291.021 13.82 281.511 23.09 283.756 36.18" transform="translate(-252)"/>
-                            </svg>
-                          </div>
-                          <div class="star">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="37" viewBox="0 0 40 37">
-                              <polygon fill="none" points="272 30 260.244 36.18 262.489 23.09 252.979 13.82 266.122 11.91 272 0 277.878 11.91 291.021 13.82 281.511 23.09 283.756 36.18" transform="translate(-252)"/>
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="rating-block">
-                        <p class="ratings-type">Taste</p>
-                        <div class="rating-block-rating" data-rating>
-                          <div class="star">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="37" viewBox="0 0 40 37">
-                              <polygon fill="none" points="272 30 260.244 36.18 262.489 23.09 252.979 13.82 266.122 11.91 272 0 277.878 11.91 291.021 13.82 281.511 23.09 283.756 36.18" transform="translate(-252)"/>
-                            </svg>
-                          </div>
-                          <div class="star">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="37" viewBox="0 0 40 37">
-                              <polygon fill="none" points="272 30 260.244 36.18 262.489 23.09 252.979 13.82 266.122 11.91 272 0 277.878 11.91 291.021 13.82 281.511 23.09 283.756 36.18" transform="translate(-252)"/>
-                            </svg>
-                          </div>
-                          <div class="star">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="37" viewBox="0 0 40 37">
-                              <polygon fill="none" points="272 30 260.244 36.18 262.489 23.09 252.979 13.82 266.122 11.91 272 0 277.878 11.91 291.021 13.82 281.511 23.09 283.756 36.18" transform="translate(-252)"/>
-                            </svg>
-                          </div>
-                          <div class="star">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="37" viewBox="0 0 40 37">
-                              <polygon fill="none" points="272 30 260.244 36.18 262.489 23.09 252.979 13.82 266.122 11.91 272 0 277.878 11.91 291.021 13.82 281.511 23.09 283.756 36.18" transform="translate(-252)"/>
-                            </svg>
-                          </div>
-                          <div class="star">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="37" viewBox="0 0 40 37">
-                              <polygon fill="none" points="272 30 260.244 36.18 262.489 23.09 252.979 13.82 266.122 11.91 272 0 277.878 11.91 291.021 13.82 281.511 23.09 283.756 36.18" transform="translate(-252)"/>
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                                <!-- comments -->
-                <div class="comment-section-container">
-                        <h3>Comments (2)</h3>
-                        <div class="comment-section-author">
-                        <img src="https://placehold.it/50x50" alt="">
-                        <div class="comment-section-name">
-                            <h5><a href="">Janice Jones</a></h5>
-                            <p>March 12, 2017 at 1:28pm</p>
-                        </div>
-                        </div>
-                        <div class="comment-section-text">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur. Nulla vitae elit libero, a pharetra augue. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum facilis tenetur a voluptatibus quia
-                            deserunt.
-                        </p>
-                        </div>
-                        <div class="comment-section-author">
-                        <img src="https://placehold.it/50x50" alt="">
-                        <div class="comment-section-name">
-                            <h5><a href="">Janice Jones</a></h5>
-                            <p>March 12, 2017 at 1:28pm</p>
-                        </div>
-                        </div>
-                        <div class="comment-section-text">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur. Nulla vitae elit libero, a pharetra augue. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum facilis tenetur a voluptatibus quia deserunt.
-                        </p>
-                        </div>
-                    </div>
-                    <!--/comments-->
-                    
-                    <!-- comment form -->
-                    <form class="comment-section-form">
-                        <div class="comment-section-box">
-                        <div class="row">
-                            <div class="small-12 column">
-                            <h4>Leave a Comment</h4>
-                            <label>Name
-                                <input type="text">
-                            </label>
-                            <label>Email
-                                <input type="text">
-                            </label>
-                            <label>Comment
-                                <textarea rows="10" type="text"></textarea>
-                            </label>
-                            <button class="button expanded">Submit</button>
-                            </div>
-                        </div>
-                        </div>
-                    </form>
-                    <!--/comment box-->
-      
-      
-                  
+            <div class="star">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="37" viewBox="0 0 40 37">
+                <polygon fill="none" points="272 30 260.244 36.18 262.489 23.09 252.979 13.82 266.122 11.91 272 0 277.878 11.91 291.021 13.82 281.511 23.09 283.756 36.18"
+                  transform="translate(-252)" />
+              </svg>
             </div>
-              
-              
+            <div class="star">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="37" viewBox="0 0 40 37">
+                <polygon fill="none" points="272 30 260.244 36.18 262.489 23.09 252.979 13.82 266.122 11.91 272 0 277.878 11.91 291.021 13.82 281.511 23.09 283.756 36.18"
+                  transform="translate(-252)" />
+              </svg>
+            </div>
+            <div class="star">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="37" viewBox="0 0 40 37">
+                <polygon fill="none" points="272 30 260.244 36.18 262.489 23.09 252.979 13.82 266.122 11.91 272 0 277.878 11.91 291.021 13.82 281.511 23.09 283.756 36.18"
+                  transform="translate(-252)" />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="rating-block">
+          <p class="ratings-type">Taste</p>
+          <div class="rating-block-rating" data-rating>
+            <div class="star">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="37" viewBox="0 0 40 37">
+                <polygon fill="none" points="272 30 260.244 36.18 262.489 23.09 252.979 13.82 266.122 11.91 272 0 277.878 11.91 291.021 13.82 281.511 23.09 283.756 36.18"
+                  transform="translate(-252)" />
+              </svg>
+            </div>
+            <div class="star">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="37" viewBox="0 0 40 37">
+                <polygon fill="none" points="272 30 260.244 36.18 262.489 23.09 252.979 13.82 266.122 11.91 272 0 277.878 11.91 291.021 13.82 281.511 23.09 283.756 36.18"
+                  transform="translate(-252)" />
+              </svg>
+            </div>
+            <div class="star">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="37" viewBox="0 0 40 37">
+                <polygon fill="none" points="272 30 260.244 36.18 262.489 23.09 252.979 13.82 266.122 11.91 272 0 277.878 11.91 291.021 13.82 281.511 23.09 283.756 36.18"
+                  transform="translate(-252)" />
+              </svg>
+            </div>
+            <div class="star">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="37" viewBox="0 0 40 37">
+                <polygon fill="none" points="272 30 260.244 36.18 262.489 23.09 252.979 13.82 266.122 11.91 272 0 277.878 11.91 291.021 13.82 281.511 23.09 283.756 36.18"
+                  transform="translate(-252)" />
+              </svg>
+            </div>
+            <div class="star">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="37" viewBox="0 0 40 37">
+                <polygon fill="none" points="272 30 260.244 36.18 262.489 23.09 252.979 13.82 266.122 11.91 272 0 277.878 11.91 291.021 13.82 281.511 23.09 283.756 36.18"
+                  transform="translate(-252)" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- comments -->
+    <div class="comment-section-container">
+      <h3>Comments (2)</h3>
+      <div class="comment-section-author">
+        <img src="https://placehold.it/50x50" alt="">
+        <div class="comment-section-name">
+          <h5>
+            <a href="">Janice Jones</a>
+          </h5>
+          <p>March 12, 2017 at 1:28pm</p>
+        </div>
+      </div>
+      <div class="comment-section-text">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur. Nulla vitae
+          elit libero, a pharetra augue. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum facilis tenetur
+          a voluptatibus quia deserunt.
+        </p>
+      </div>
+      <div class="comment-section-author">
+        <img src="https://placehold.it/50x50" alt="">
+        <div class="comment-section-name">
+          <h5>
+            <a href="">Janice Jones</a>
+          </h5>
+          <p>March 12, 2017 at 1:28pm</p>
+        </div>
+      </div>
+      <div class="comment-section-text">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur. Nulla vitae
+          elit libero, a pharetra augue. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum facilis tenetur
+          a voluptatibus quia deserunt.
+        </p>
+      </div>
+    </div>
+    <!--/comments-->
 
-    <script src="js/vendor/jquery.js"></script>
-    <script src="js/vendor/what-input.js"></script>
-    <script src="js/vendor/foundation.js"></script>
-    <script src="js/app.js"></script>
-
-<script>
-  
-var title = document.getElementById("recipeName").value;
-var cuisine = document.getElementById("recipeCuisine").value;
-var image_url = document.getElementById("recipeImage").value;
-
-// Recipe Object Template
-var recipeObject = {
-    // title: "",
-    // cuisine: "",
-    // image_url: "",
-    ingredients: [],
-    instructions: []
-};
-  
-  var ingredientArray = [];
-  
-  
-  $("#ingredientSubmitBtn").click(function(){
-    event.preventDefault();
-    var newIngredient = {
-      quantity: 0,
-      ingredient: ""
-    }
-    // var title = document.getElementById("recipeName").value;
-    // var cuisine = document.getElementById("recipeCuisine").value;
-    // var image_url = document.getElementById("recipeImage").value;
-    var ingredient = document.getElementById("ingredientsForRecipe").value;
-    newIngredient.ingredient = ingredient;
-    var quantity = document.getElementById("ingredientQuantity").value;
-    newIngredient.quantity = quantity;
-  
-    recipeObject.ingredients.push(newIngredient);
-    
-  // This appends to the div below so that the user can see what ingredients they've entered. 
-    document.getElementById("ingredientsDiv").append(quantity + " " +ingredient+ " ");
-    
-  // This is resetting the values of the inputs to 0
-    document.getElementById("ingredientQuantity").value = "";
-    document.getElementById("ingredientsForRecipe").value = "";
-    console.log(recipeObject);
-  });
-   
-  
-   $("#instructionSubmitBtn").click(function(){
-    event.preventDefault();
-    var instruction = document.getElementById("instructionInput").value;
-    recipeObject.instructions.push(instruction)
-    document.getElementById("ingredientsDiv").append(instruction)
-    document.getElementById("instructionInput").value = "";
-  });
-  
-    $("#finalizeRecipe").click(function(){
-    event.preventDefault();
-
-    var title = document.getElementById("recipeName").value;
-    var cuisine = document.getElementById("recipeCuisine").value;
-    var image_url = document.getElementById("recipeImage").value;
-
-    recipeObject.title = title;
-    recipeObject.cuisine = cuisine;
-    recipeObject.image_url = image_url;
-    console.log(recipeObject);
-    ingredientArray.push(recipeObject);
-    console.log(ingredientArray);
-  
-
-    var uri = "/recipe";
-    $.ajax({
-        dateType: "json",
-        contentType: "application/json",
-        method: "POST",
-        url: uri,
-        data: JSON.stringify(recipeObject),
-        success: function (result) {
-            // alert(result);
-        },
-        error: function () {
-            alert("fuck");
-    }
-})
+    <!-- comment form -->
+    <form class="comment-section-form">
+      <div class="comment-section-box">
+        <div class="row">
+          <div class="small-12 column">
+            <h4>Leave a Comment</h4>
+            <label>Name
+              <input type="text">
+            </label>
+            <label>Email
+              <input type="text">
+            </label>
+            <label>Comment
+              <textarea rows="10" type="text"></textarea>
+            </label>
+            <button class="button expanded">Submit</button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <!--/comment box-->
 
 
 
+  </div>
 
 
 
-    });
-  // for each ingredient push 
-  
-  
-  </script>
+  <!-- <script src="js/vendor/jquery.js"></script> -->
+  <!-- <script src="js/vendor/what-input.js"></script> -->
+  <script src="js/vendor/foundation.js"></script>
+  <script src="js/app.js"></script>
+
+  <script src="js/recipe.js"></script>
 </body>
+
 </html>

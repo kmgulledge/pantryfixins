@@ -1,12 +1,13 @@
 console.log("opened profile.js");
 // First thing: ask the back end for json with all animals
+
 function init(){
   $.getJSON("/pantry", function (data) {
     // console.log(data);
     // Call our function to generate a table body
     displayResults(data);
-  });
-}
+  });// end getJSON()
+}// end init()
 
 
 
@@ -111,17 +112,12 @@ function displayResults(pantry) {
         id: $(this).parent().attr("data-ingredient-id")
       }
 
-      
       $.post('/pantry/delete', ingredientID, function(res){
           init();
       })
-
-      
-
-
-      
     })
 }
-  $(function(){
-    init();
-  })
+
+$(function(){
+  init();
+})
