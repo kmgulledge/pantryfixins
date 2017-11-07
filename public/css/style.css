@@ -61,7 +61,7 @@
 
 /*Login and SignUp */
 
-#login {
+#login, #signup {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -73,27 +73,8 @@
   z-index: -100;
 }
 
-#signup {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-image: url(../images/Recipe-book3.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  z-index: -100;
-}
-
-#loginContainer {
+#loginContainer, #signupContainer {
   margin-top: 3%;
-  background-color:#F2F0F0;
-  width: 40%;
-  border: 2px solid gray;
-}
-
-#signupContainer {
-  margin-top: 12%;
   background-color:#F2F0F0;
   width: 40%;
   border: 2px solid gray;
@@ -108,3 +89,6 @@
   margin-left: 22%;
   margin-top: 9%;
 }
+
+/* Profile */
+
