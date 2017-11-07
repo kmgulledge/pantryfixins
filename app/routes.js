@@ -27,7 +27,7 @@ module.exports = function (app, passport) {
   // ======================================================
   
   app.get('/', function (req, res) {
-    res.render('login.pug');
+    res.render('index.pug');
     // res.sendFile(path.join(__dirname, "../public/index.html")); // load the index.pug file
   });// end app.get('/')
 
