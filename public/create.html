@@ -1,0 +1,185 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Page</title>
+    <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<ul class="menu menu-hover-lines">
+  <li class="active"><a href="#">Home</a></li>
+  <li><a href="/profile">Profile</a></li>
+  <li><a href="user.html">Ingredient Lists</a></li>
+  <li><a href="create.html">Favorite Recipes</a></li>
+  <li><a href="recipe.html">Saved Recipes</a></li>
+  <li><a href="/recipenow">Make A Recipe Now</a></li>
+</ul>
+
+<div class="portfolio-resume-scrolling-container row">
+  <div class="columns small-12 medium-5 portfolio-resume-overview">
+    <div class="portfolio-resume-overview-content">
+      <h3 class="portfolio-resume-name">Hello Pantry Chef</h3>
+      <p>Create Your Own Recipes</p>
+      <!-- <a class="button primary expanded" href="#">Contact Me</a> -->
+        <form action="/action_page.php">
+            <input type="text" id="recipeName" name="recipeName" placeholder="Insert a title for this Recipe">
+            <input type="text" id="recipeCuisine" name="recipeCuisine" placeholder="Choose a Cuisine for this Recipe">
+            <input type="text" id="recipeImage" name="recipeImage" placeholder="Insert a link to an image for this Recipe">
+        </form>
+    </div>
+  </div>
+  <!-- <div class="columns small-12 medium-7 portfolio-resume-scrolling">
+    <h3>Your Current List of Ingredients</h3>
+    <ul class="portfolio-resume-side-list" id="pantryDiv" style="list-style: none">
+      
+  </div> -->
+
+   
+    <form action="/action_page.php">  
+    <br>
+    <br>
+    Add one ingredient at a time!
+    <input type="text" id="ingredientsForRecipe" name="Ingredient" placeholder="Add ingredient here">
+    <input type="text" id="ingredientQuantity" name="IngredientQty" placeholder="Add quantity">
+    <input type="submit" value="Submit" id="ingredientSubmitBtn">
+    </form> 
+
+    <form action="/action_page.php">
+    Enter instructions one step at a Time!
+    <input type="text" id="instructionInput" name="Ingredient" placeholder="Add instructions here one at a time!">
+    <input type="submit" value="Submit" id="instructionSubmitBtn">
+    </form> 
+
+        <div class="basic-card">
+            <div class="basic-card-image">
+                <img src="images/Recipe-book.jpg">
+                <h2>Recipe Title</h2>
+            </div>
+            <div class="basic-card-content content callout secondary">
+                <h5>Ingredients</h5>
+                <ul style="list-style-type:circle" id="ingredientsDiv">
+                         <li >Coffee</li>
+                        <li>Tea</li>
+                        <li>Milk</li> 
+                      </ul>
+            </div>
+            <div class="basic-card-content content callout secondary">
+                    <h5>Cooking Instructions</h5>
+                    <ol type="1">
+                            <li>Aenean non erat vitae ligula vestibulum hendrerit.</li>
+                            <li>Duis sollicitudin nulla vel scelerisque volutpat.</li>
+                            <li>Praesent efficitur mi quis sagittis tempus.</li>
+                            <li>Donec id turpis a diam imperdiet dapibus.</li>
+                            <li>Cras ac augue vitae tortor porta commodo ut ac magna.</li>
+                            <li>Fusce ornare quam at finibus porttitor.</li>
+                          </ol>
+                </div>
+
+    <!-- <div id ="ingredientsDiv">
+
+    </div> -->
+</div>
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/what-input.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  
+var title = document.getElementById("recipeName").value;
+var cuisine = document.getElementById("recipeCuisine").value;
+var image_url = document.getElementById("recipeImage").value;
+
+// Recipe Object Template
+var recipeObject = {
+    // title: "",
+    // cuisine: "",
+    // image_url: "",
+    ingredients: [],
+    instructions: []
+};
+  
+  var ingredientArray = [];
+  
+  
+  $("#ingredientSubmitBtn").click(function(){
+    event.preventDefault();
+    var newIngredient = {
+      quantity: 0,
+      ingredient: ""
+    }
+    // var title = document.getElementById("recipeName").value;
+    // var cuisine = document.getElementById("recipeCuisine").value;
+    // var image_url = document.getElementById("recipeImage").value;
+    var ingredient = document.getElementById("ingredientsForRecipe").value;
+    newIngredient.ingredient = ingredient;
+    var quantity = document.getElementById("ingredientQuantity").value;
+    newIngredient.quantity = quantity;
+  
+    recipeObject.ingredients.push(newIngredient);
+    
+  // This appends to the div below so that the user can see what ingredients they've entered. 
+    document.getElementById("ingredientsDiv").append("<li>" + quantity + " " +ingredient+ " "+"</li>");
+    
+  // This is resetting the values of the inputs to 0
+    document.getElementById("ingredientQuantity").value = "";
+    document.getElementById("ingredientsForRecipe").value = "";
+    console.log(recipeObject);
+  });
+   
+  
+   $("#instructionSubmitBtn").click(function(){
+    event.preventDefault();
+    var instruction = document.getElementById("instructionInput").value;
+    recipeObject.instructions.push(instruction)
+    document.getElementById("ingredientsDiv").append(instruction)
+    document.getElementById("instructionInput").value = "";
+  });
+  
+    $("#finalizeRecipe").click(function(){
+    event.preventDefault();
+
+    var title = document.getElementById("recipeName").value;
+    var cuisine = document.getElementById("recipeCuisine").value;
+    var image_url = document.getElementById("recipeImage").value;
+
+    recipeObject.title = title;
+    recipeObject.cuisine = cuisine;
+    recipeObject.image_url = image_url;
+    console.log(recipeObject);
+    ingredientArray.push(recipeObject);
+    console.log(ingredientArray);
+  
+
+    var uri = "/recipe";
+    $.ajax({
+        dateType: "json",
+        contentType: "application/json",
+        method: "POST",
+        url: uri,
+        data: JSON.stringify(recipeObject),
+        success: function (result) {
+            // alert(result);
+        },
+        error: function () {
+            alert("fuck");
+    }
+})
+
+
+
+
+
+
+    });
+  // for each ingredient push 
+  
+  
+  </script>
+</body>
+</body>
+</html>
