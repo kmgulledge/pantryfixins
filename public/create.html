@@ -10,10 +10,10 @@
 </head>
 <body>
 <ul class="menu menu-hover-lines">
-  <li class="active"><a href="#">Home</a></li>
+  <li class="active"><a href="../../index.pug">Home</a></li>
   <li><a href="/profile">Profile</a></li>
   <li><a href="user.html">Ingredient Lists</a></li>
-  <li><a href="create.html">Favorite Recipes</a></li>
+  <li><a href="create.html">Create a Recipe</a></li>
   <li><a href="recipe.html">Saved Recipes</a></li>
   <li><a href="/recipenow">Make A Recipe Now</a></li>
 </ul>
@@ -26,61 +26,46 @@
       <!-- <a class="button primary expanded" href="#">Contact Me</a> -->
         <form action="/action_page.php">
             <input type="text" id="recipeName" name="recipeName" placeholder="Insert a title for this Recipe">
-            <input type="text" id="recipeCuisine" name="recipeCuisine" placeholder="Choose a Cuisine for this Recipe">
+            <!-- <input type="text" id="recipeCuisine" name="recipeCuisine" placeholder="Choose a Cuisine for this Recipe"> -->
             <input type="text" id="recipeImage" name="recipeImage" placeholder="Insert a link to an image for this Recipe">
+            <input type="submit" value="Submit" id="infoSubmitBtn" class="success button">
         </form>
     </div>
   </div>
-  <!-- <div class="columns small-12 medium-7 portfolio-resume-scrolling">
-    <h3>Your Current List of Ingredients</h3>
-    <ul class="portfolio-resume-side-list" id="pantryDiv" style="list-style: none">
-      
-  </div> -->
 
-   
     <form action="/action_page.php">  
     <br>
     <br>
     Add one ingredient at a time!
     <input type="text" id="ingredientsForRecipe" name="Ingredient" placeholder="Add ingredient here">
     <input type="text" id="ingredientQuantity" name="IngredientQty" placeholder="Add quantity">
-    <input type="submit" value="Submit" id="ingredientSubmitBtn">
+    <input type="submit" value="Submit" id="ingredientSubmitBtn" class = "success button">
     </form> 
 
     <form action="/action_page.php">
     Enter instructions one step at a Time!
     <input type="text" id="instructionInput" name="Ingredient" placeholder="Add instructions here one at a time!">
-    <input type="submit" value="Submit" id="instructionSubmitBtn">
+    <input type="submit" value="Submit" id="instructionSubmitBtn" class = "success button">
     </form> 
 
+     
         <div class="basic-card">
-            <div class="basic-card-image">
-                <img src="images/Recipe-book.jpg">
-                <h2>Recipe Title</h2>
-            </div>
+                <div class="basic-card-content" id="recipeTitle"></div> 
+                <div class="basic-card-image" id="recipePic"></div>
+        
             <div class="basic-card-content content callout secondary">
                 <h5>Ingredients</h5>
-                <ul style="list-style-type:circle" id="ingredientsDiv">
-                         <li >Coffee</li>
-                        <li>Tea</li>
-                        <li>Milk</li> 
-                      </ul>
+                <ul style="list-style-type:circle" id="ingredientsDiv"></ul>
             </div>
             <div class="basic-card-content content callout secondary">
                     <h5>Cooking Instructions</h5>
-                    <ol type="1">
-                            <li>Aenean non erat vitae ligula vestibulum hendrerit.</li>
-                            <li>Duis sollicitudin nulla vel scelerisque volutpat.</li>
-                            <li>Praesent efficitur mi quis sagittis tempus.</li>
-                            <li>Donec id turpis a diam imperdiet dapibus.</li>
-                            <li>Cras ac augue vitae tortor porta commodo ut ac magna.</li>
-                            <li>Fusce ornare quam at finibus porttitor.</li>
-                          </ol>
-                </div>
+                    <ol type="1" id="instructions"> </ol>
+            </div>
 
-    <!-- <div id ="ingredientsDiv">
-
-    </div> -->
+            <div>
+              <button id="finalizeRecipe" type="submit" class="success button">Finalize Recipe</button>
+            </div>
+        </div>
 </div>
 
     <script src="js/vendor/jquery.js"></script>
@@ -91,7 +76,7 @@
 <script>
   
 var title = document.getElementById("recipeName").value;
-var cuisine = document.getElementById("recipeCuisine").value;
+// var cuisine = document.getElementById("recipeCuisine").value;
 var image_url = document.getElementById("recipeImage").value;
 
 // Recipe Object Template
@@ -105,6 +90,21 @@ var recipeObject = {
   
   var ingredientArray = [];
   
+  $("#infoSubmitBtn").click(function(){
+    event.preventDefault();
+    var title = document.getElementById("recipeName").value;
+    // var cuisine = document.getElementById("recipeCuisine").value;
+    var image_url = document.getElementById("recipeImage").value;
+
+    // recipeObject.title = title;
+    // recipeObject.cuisine = cuisine;
+    // recipeObject.image_url = image_url;
+
+    $("#recipeTitle").append("<h2><em>" + title + "</em></h2>");
+    $("#recipePic").append("<img src='"+image_url+"'>")
+    document.getElementById("recipeName").value = "";
+    document.getElementById("recipeImage").value = "";
+  });
   
   $("#ingredientSubmitBtn").click(function(){
     event.preventDefault();
@@ -123,7 +123,8 @@ var recipeObject = {
     recipeObject.ingredients.push(newIngredient);
     
   // This appends to the div below so that the user can see what ingredients they've entered. 
-    document.getElementById("ingredientsDiv").append("<li>" + quantity + " " +ingredient+ " "+"</li>");
+    document.getElementById("recipeName").append(title);
+    $("#ingredientsDiv").append("<li> <strong>" + quantity + "</strong>" + " " + " " +ingredient + "</li>");
     
   // This is resetting the values of the inputs to 0
     document.getElementById("ingredientQuantity").value = "";
@@ -136,7 +137,7 @@ var recipeObject = {
     event.preventDefault();
     var instruction = document.getElementById("instructionInput").value;
     recipeObject.instructions.push(instruction)
-    document.getElementById("ingredientsDiv").append(instruction)
+    $("#instructions").append("<li>" + instruction + "</li>")
     document.getElementById("instructionInput").value = "";
   });
   
