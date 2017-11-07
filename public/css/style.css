@@ -59,9 +59,9 @@
   color: white;
 }
 
-/*Login */
+/*Login and SignUp */
 
-#login {
+#login, #signup {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -73,14 +73,14 @@
   z-index: -100;
 }
 
-#loginContainer {
+#loginContainer, #signupContainer {
   margin-top: 3%;
   background-color:#F2F0F0;
   width: 40%;
   border: 2px solid gray;
 }
 
-#loginSubmitBtn {
+#loginSubmitBtn, #signupSubmitBtn {
   background-color: #990000;
 }
 
@@ -89,3 +89,29 @@
   margin-left: 22%;
   margin-top: 9%;
 }
+
+/* User */
+
+#user {
+  background-color: #A0A0A0;
+}
+
+#userTitle {
+  font-family: 'Homemade Apple', cursive;
+  font-size: 62px;
+  margin-right: 5%;
+}
+
+label {
+  font-weight: bold;
+}
+
+#addToPantry {
+  border-radius: 4px;
+  background-color: #A62222;
+}
+
+#pantryIngredients {
+  font-family: 'Homemade Apple', cursive;
+  margin-left: 5%;
+} 
