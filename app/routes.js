@@ -402,10 +402,8 @@ function addToPantry(req, res) {
     });// end db.pantries.find()
 }// end addToPantry()
 
-
-
 function getNowRecipes(req, res) {
-  console.log("Did I get here");
+
   // Grab everything and put them in an array to use to search against
   Pantry.find({"user": req.user.local.username}, function(err, pantryData) {
     // Log any errors if the server encounters one
@@ -414,7 +412,7 @@ function getNowRecipes(req, res) {
     }
     // Otherwise, send the result of this query to the browser
     else {
-      console.log("getNowRecipes Pantry data", pantryData);
+      // console.log("getNowRecipes Pantry data", pantryData);
       Recipe.find({}, function(err, recipeData) {
         // Log any errors if the server encounters one
         if (err) {
@@ -426,9 +424,6 @@ function getNowRecipes(req, res) {
           // console.log("Pantry Data again: ", pantryData);
 
           var wtf = recipeData.filter((obj, val) => {
-            // console.log("-----New Recipe-----:", obj.title);
-            // console.log("Recipe Ingredient Length:", obj.ingredients.length);
-            // console.log("Value is:", val);
             let temp = [];
             obj.ingredients.forEach(recEl => {
               pantryData.forEach(panEl => {
@@ -444,7 +439,7 @@ function getNowRecipes(req, res) {
             }// end if()
           });// end recipeData.filter
           
-          console.log("wtf is:", wtf);
+          // console.log("wtf is:", wtf);
           res.json(wtf);
         }// end else()
       });// end Recipe.find()
