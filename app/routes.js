@@ -27,7 +27,8 @@ module.exports = function (app, passport) {
   // ======================================================
   
   app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/index.html")); // load the index.pug file
+    res.render('login.pug');
+    // res.sendFile(path.join(__dirname, "../public/index.html")); // load the index.pug file
   });// end app.get('/')
 
   // ======================================================
@@ -36,7 +37,6 @@ module.exports = function (app, passport) {
   
   // show the login form
   app.get('/login', function (req, res) {
-    // render the page and pass in any flash data if it exists
     res.render('login.pug');
   });// end app.get('/login')
 
