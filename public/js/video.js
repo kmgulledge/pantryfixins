@@ -1,9 +1,9 @@
 var videos = [
-    "media/stirfry1.MOV",
-    "media/stirfry2.MOV",
-    "media/stirfry3.MOV",
-    "media/stirfry4.MOV",
-    "media/stirfry5.MOV",
+    "media/stirfry1.mov",
+    "media/stirfry2.mov",
+    "media/stirfry3.mov",
+    "media/stirfry4.mov",
+    "media/stirfry5.mov",
 ];
 
 var videoCount = videos.length;
