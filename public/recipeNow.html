@@ -7,24 +7,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Make a recipe right now.</title>
     <script src="https://code.jquery.com/jquery.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="css/app.css">
 </head>
 
 <body>
+    <ul class="menu menu-hover-lines">
+        <li class="active"><a href="../../index.pug">Home</a></li>
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="user.html">Ingredient Lists</a></li>
+        <li><a href="create.html">Create a Recipe</a></li>
+        <li><a href="recipe.html">Saved Recipes</a></li>
+        <li><a href="/recipenow">Make A Recipe Now</a></li>
+    </ul>
 
-    <h1>Recipes!!!</h1>
-
-    <div id="recipeNowDiv" class="basic-card">
-
+    <div class="portfolio-resume-scrolling-container row">
+        <div class="columns small-12 medium-5 portfolio-resume-overview">
+            <h3 id="userTitle" class="portfolio-resume-name">My Recipes</h3>
+            <div class="portfolio-resume-overview-content">
+                <!-- <a class="button primary expanded" href="#">Contact Me</a> -->
+            </div>
+        </div>
     </div>
+    <br>
 
-    <script src="js/vendor/jquery.js"></script>
-    <script src="js/vendor/what-input.js"></script>
-    <script src="js/vendor/foundation.js"></script>
-    <script src="js/app.js"></script>
-    <script src="./js/recipeNow.js"></script>
+        <div id="recipeNowDiv" class="basic-card">
+
+        </div>
+
+        <script src="js/vendor/jquery.js"></script>
+        <script src="js/vendor/what-input.js"></script>
+        <script src="js/vendor/foundation.js"></script>
+        <script src="js/app.js"></script>
+        <script src="./js/recipeNow.js"></script>
 
 </body>
 
