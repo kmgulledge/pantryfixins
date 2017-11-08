@@ -214,8 +214,9 @@
   background-image: url(../images/spices.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: 0.4;
-  z-index: 0;
+  z-index: -1;
+  border: 2px solid black;
+  opacity: 0.8;
 }
 
 .portfolio-resume-overview-content {

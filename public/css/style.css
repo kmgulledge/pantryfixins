@@ -69,6 +69,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   z-index: -100;
+  background-color: #A0A0A0;
 }
 
 #loginContainer, #signupContainer {
@@ -91,13 +92,15 @@
 /* User */
 
 #user {
-  background-color: #A0A0A0;
+  background-image: url(../images/wood-texture.jpg);
+  opacity: 0.8;
 }
 
 #userTitle {
   font-family: 'Homemade Apple', cursive;
-  font-size: 62px;
+  font-size: 86px;
   margin-right: 5%;
+  background: rgba(255, 229, 204, 0.5);
 }
 
 label {
@@ -112,4 +115,5 @@ label {
 #pantryIngredients {
   font-family: 'Homemade Apple', cursive;
   margin-left: 5%;
+  font-size: 48px;
 } 
