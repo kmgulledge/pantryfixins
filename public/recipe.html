@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Homemade+Apple" rel="stylesheet">
   <!-- <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script> -->
 
   <!-- <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link> -->
@@ -18,49 +20,25 @@
   <!-- <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script> -->
 </head>
 
-<body>
+<body id="recipes">
 
+    <ul class="menu menu-hover-lines">
+        <li><a href="user.html">My Pantry</a></li>
+        <li><a href="create.html">Create a Recipe</a></li>
+        <li><a href="recipe.html">Saved Recipes</a></li>
+        <li><a href="/recipenow">Make A Recipe Now</a></li>
+    </ul>
 
-  <form action="/action_page.php">
-    <input id="ingredientsDD" />
-    <input type="submit" name="go" value="go!" />
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <input type="text" id="recipeName" name="recipeName" placeholder="Insert a title for this Recipe">
-    <input type="text" id="recipeCuisine" name="recipeCuisine" placeholder="Choose a Cuisine for this Recipe">
-    <input type="text" id="recipeImage" name="recipeImage" placeholder="Insert a link to an image for this Recipe">
-    <br>
-    <hr> Add one ingredient at a time!
-    <input type="text" id="ingredientsForRecipe" name="Ingredient" placeholder="Add ingredient here">
-    <input type="text" id="ingredientQuantity" name="IngredientQty" placeholder="Add quantity">
-    <input type="submit" value="Submit" id="ingredientSubmitBtn">
-  </form>
-
-  <form action="/action_page.php">
-    Enter instructions one step at a Time!
-    <input type="text" id="instructionInput" name="Ingredient" placeholder="Add instructions here one at a time!">
-    <input type="submit" value="Submit" id="instructionSubmitBtn">
-  </form>
-
-  <div id="ingredientsDiv">
-
-  </div>
-
-  <!-- <p>Hello</p> -->
-  <div>
-    <button id="finalizeRecipe">Finalize Recipe</button>
-  </div>
-
-
-
+    <div id="recipesImage" class="portfolio-resume-scrolling-container row">
+        <div class="columns small-12 medium-5 portfolio-resume-overview">
+            <div class="portfolio-resume-overview-content">
+                    <p id="createTitle">My Recipes</p>
+            </div>
+        </div>
 
   <div class="basic-card">
     <div class="basic-card-image">
-      <img src="images/Recipe-book.jpg">
+      <img src="images/Recipe-book3.jpg">
       <h2>Recipe Title</h2>
     </div>
     <div class="basic-card-content content callout secondary">
@@ -83,7 +61,7 @@
       </ol>
     </div>
 
-    <div class="card rating">
+    <!-- <div class="card rating">
       <div class="card-section">
         <p class="ratings-card-header">Rate this Recipe</p>
         <div class="rating-block">
@@ -157,9 +135,9 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- comments -->
-    <div class="comment-section-container">
+    <!-- <div class="comment-section-container">
       <h3>Comments (2)</h3>
       <div class="comment-section-author">
         <img src="https://placehold.it/50x50" alt="">
@@ -191,11 +169,11 @@
           a voluptatibus quia deserunt.
         </p>
       </div>
-    </div>
+    </div> -->
     <!--/comments-->
 
     <!-- comment form -->
-    <form class="comment-section-form">
+    <!-- <form class="comment-section-form">
       <div class="comment-section-box">
         <div class="row">
           <div class="small-12 column">
@@ -213,7 +191,7 @@
           </div>
         </div>
       </div>
-    </form>
+    </form> -->
     <!--/comment box-->
 
 

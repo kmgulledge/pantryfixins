@@ -12,25 +12,24 @@
 </head>
 <body id="user">
 <ul class="menu menu-hover-lines">
-  <li class="active"><a href="../../index.pug">Home</a></li>
-  <li><a href="/profile">Profile</a></li>
-  <li><a href="user.html">Ingredient Lists</a></li>
+  <!-- <li class="active"><a href="../../index.pug">Home</a></li> -->
+  <li><a href="user.html">My Pantry</a></li>
+  <li><a href="recipe.html">My Recipes</a></li>
   <li><a href="create.html">Create a Recipe</a></li>
-  <li><a href="recipe.html">Saved Recipes</a></li>
-  <li><a href="/recipenow">Make A Recipe Now</a></li>
+  <li><a href="/recipenow">Prepare A Recipe</a></li>
 </ul>
 
-<div class="portfolio-resume-scrolling-container row">
+<div id="userImage" class="portfolio-resume-scrolling-container row">
   <div class="columns small-12 medium-5 portfolio-resume-overview">
       <h3 id="userTitle" class="portfolio-resume-name">My Pantry</h3>
     <div class="portfolio-resume-overview-content">
       <!-- <a class="button primary expanded" href="#">Contact Me</a> -->
       <form id="pantryForm" method="post" action="/pantry">
-          <label>Ingredients
+          <label id="enterIng">Ingredients
               <input type="text" id="item" class="form-control" name="item" placeholder="Enter Ingredients">
           </label>
 
-         <label>Quantity
+         <label id="enterQty">Quantity
               <input type="text" id="quantity" class="form-control" name="quantity" placeholder="Enter Quantity">
           </label>
          <button id="addToPantry" type="submit" class="success button">Add To My Pantry</button>
