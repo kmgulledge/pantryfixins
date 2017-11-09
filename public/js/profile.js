@@ -120,4 +120,18 @@ function displayResults(pantry) {
 
 $(function(){
   init();
+
+  // Fill Ingredients DD
+  $("#ingredientsDD").autocomplete({
+    source: availableTags
+  });
 })
+
+$(function () {
+  
+    console.log("tags:", availableTags);
+  
+    $("#ingredientsDD").autocomplete({
+      source: availableTags
+    });
+  });
