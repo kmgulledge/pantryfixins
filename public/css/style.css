@@ -91,13 +91,25 @@
 
 /* User */
 
+.callout {
+  background: #E0E0E0;
+  font-family: 'Homemade Apple', cursive;
+  border-radius: 4px;
+  font-size: 20px;
+}
+
+.callout:hover { 
+  background-color: white;
+}
+
 #userImage {
-  background-image: url(../images/spices.jpg);  
+  background-image: url(../images/spices.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 } 
 
 #user {
-  background-image: url(../images/wood-texture.jpg);
-  /* background-color:	#A0A0A0; */
+  background-color:	#A0A0A0;
   opacity: 0.8;
 }
 
@@ -105,8 +117,9 @@
   font-family: 'Homemade Apple', cursive;
   font-size: 86px;
   margin-right: 5%;
-  background: rgba(255, 229, 204, 0.3);
-  border: 2px solid black;
+  background: rgba(224, 224, 224, 0.3);
+  border: 1.5px solid black;
+  border-radius: 10px;
 }
 
 label {
@@ -118,14 +131,18 @@ label {
   background-color: #98a52a;
   border: 1px solid black;
   border-radius: 4px;
+  font-weight: bold;
 }
 
 #pantryIngredients {
   font-family: 'Homemade Apple', cursive;
   margin-left: 5%;
   font-size: 48px;
-  background: rgba(255, 229, 204, 0.3);
-  border: 1px solid black;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  text-decoration: underline;
+  /* background: #E0E0E0;
+  border: 1px solid black; */
 } 
 
 #item, #quantity {
@@ -133,7 +150,8 @@ label {
 }
 
 #enterIng, #enterQty {
-  background: rgba(255, 229, 204, 0.3);
+  background: rgba(224, 224, 224, 0.3);
+  border-radius: 4px;
 }
 
 /* Create Recipe*/
@@ -143,12 +161,51 @@ label {
 }
 
 #createRecipe {
+  width: 80%;
   padding: 40px;
+  margin: auto;
 }
 
 #createTitle {
   font-family: 'Homemade Apple', cursive;
   font-size: 86px;
+  margin-right: 5%;
+  background: white;
+  border: 1.5px solid black;
+  border-radius: 10px;
+  opacity: 0.7;
+}
+
+#createheading {
+  font-family: 'Homemade Apple', cursive;
+  margin-left: 3%;
+  font-size: 48px;
+  padding-bottom: 20px;
+  padding-top: 5px;
+  text-decoration: underline;
+}
+
+.formTitles {
+  font-family: 'Homemade Apple', cursive;
+  font-size: 22px;
+}
+
+#ingredientsForRecipe, #instructionInput, #recipeName, #recipeImage, #ingredientQuantity {
+  background: #E0E0E0;
+  border-radius: 4px;
+}
+
+#infoSubmitBtn, #ingredientSubmitBtn, #instructionSubmitBtn, #finalizeRecipe {
+  border-radius: 4px;
+  background-color: #6883aa;
+  border: 1px solid #39628e;
+  border-radius: 4px;
+}
+
+#ingredAdded, #instructAdded, #recipeTitle, #recipePic, #ingredientsDiv {
+  background: #E0E0E0;
+  border-radius: 4px;
+  overflow-x: hidden;
 }
 
 #createImage {
@@ -164,7 +221,7 @@ label {
 }
 
 #recipesImage {
-  background-image: url(../images/recipe-book.jpg);  
+  background-image: url(../images/recipe-book3.jpg);  
   background-repeat: no-repeat;
   background-size: cover;
 }
