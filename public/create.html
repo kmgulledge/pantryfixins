@@ -8,33 +8,39 @@
     <title>User Page</title>
     <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Homemade+Apple" rel="stylesheet">
 </head>
 
-<body>
+<body id="create">
     <ul class="menu menu-hover-lines">
-        <li class="active"><a href="../../index.pug">Home</a></li>
-        <li><a href="/profile">Profile</a></li>
-        <li><a href="user.html">Ingredient Lists</a></li>
+        <!-- <li class="active"><a href="../../index.pug">Home</a></li> -->
+        <li><a href="user.html">My Pantry</a></li>
         <li><a href="create.html">Create a Recipe</a></li>
         <li><a href="recipe.html">Saved Recipes</a></li>
         <li><a href="/recipenow">Make A Recipe Now</a></li>
     </ul>
 
-    <div class="portfolio-resume-scrolling-container row">
+    <div id="createImage" class="portfolio-resume-scrolling-container row">
         <div class="columns small-12 medium-5 portfolio-resume-overview">
             <div class="portfolio-resume-overview-content">
+                    <p id="createTitle">Create Recipes</p>
+            </div>
+        </div>
+
+        <div id="createRecipe">
+
                 <h3 class="portfolio-resume-name">Hello Pantry Chef</h3>
                 <p>Create Your Own Recipes</p>
                 <!-- <a class="button primary expanded" href="#">Contact Me</a> -->
-                <form action="/action_page.php">
+                <form action="/action_page.php"> Recipe Title
                     <input type="text" id="recipeName" name="recipeName" placeholder="Insert a title for this Recipe">
                     <!-- <input type="text" id="recipeCuisine" name="recipeCuisine" placeholder="Choose a Cuisine for this Recipe"> -->
+                    Recipe Image
                     <input type="text" id="recipeImage" name="recipeImage" placeholder="Insert a link to an image for this Recipe">
                     <input type="submit" value="Submit" id="infoSubmitBtn" class="success button">
                 </form>
-            </div>
-        </div>
 
         <form action="/action_page.php">
             <br>
@@ -46,12 +52,13 @@
             <input type="submit" value="Submit" id="ingredientSubmitBtn" class="success button">
         </form>
 
-        <form action="/action_page.php">
-            Enter instructions one step at a Time!
-            <input type="text" id="instructionInput" name="Ingredient" placeholder="Add instructions here one at a time!">
-            <input type="submit" value="Submit" id="instructionSubmitBtn" class="success button">
-        </form>
+            <form action="/action_page.php">
+                Enter instructions one step at a Time!
+                <input type="text" id="instructionInput" name="Ingredient" placeholder="Add instructions here one at a time!">
+                <input type="submit" value="Submit" id="instructionSubmitBtn" class="success button">
+            </form>
 
+        </div>
 
         <div class="basic-card">
             <div class="basic-card-content" id="recipeTitle"></div>

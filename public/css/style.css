@@ -91,8 +91,13 @@
 
 /* User */
 
+#userImage {
+  background-image: url(../images/spices.jpg);  
+} 
+
 #user {
   background-image: url(../images/wood-texture.jpg);
+  /* background-color:	#A0A0A0; */
   opacity: 0.8;
 }
 
@@ -101,6 +106,7 @@
   font-size: 86px;
   margin-right: 5%;
   background: rgba(255, 229, 204, 0.3);
+  border: 2px solid black;
 }
 
 label {
@@ -109,11 +115,56 @@ label {
 
 #addToPantry {
   border-radius: 4px;
-  background-color: #A62222;
+  background-color: #98a52a;
+  border: 1px solid black;
+  border-radius: 4px;
 }
 
 #pantryIngredients {
   font-family: 'Homemade Apple', cursive;
   margin-left: 5%;
   font-size: 48px;
+  background: rgba(255, 229, 204, 0.3);
+  border: 1px solid black;
 } 
+
+#item, #quantity {
+  border-radius: 4px;
+}
+
+#enterIng, #enterQty {
+  background: rgba(255, 229, 204, 0.3);
+}
+
+/* Create Recipe*/
+
+#create {
+  background-color: #A0A0A0;
+}
+
+#createRecipe {
+  padding: 40px;
+}
+
+#createTitle {
+  font-family: 'Homemade Apple', cursive;
+  font-size: 86px;
+}
+
+#createImage {
+  background-image: url(../images/recipe-book.jpg);  
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/*Recipes*/
+
+#recipes {
+  background-color: #A0A0A0;
+}
+
+#recipesImage {
+  background-image: url(../images/recipe-book.jpg);  
+  background-repeat: no-repeat;
+  background-size: cover;
+}

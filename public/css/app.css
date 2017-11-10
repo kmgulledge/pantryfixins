@@ -136,9 +136,14 @@
 
 .menu-hover-lines li a {
   padding: 0.75rem 0;
-  color: rgba(10, 10, 10, 0.5);
+  color: black;
+  font-weight: bold;
   position: relative;
   margin-left: 1rem;
+  background: rgba(255, 229, 204, 0.3);
+  border: 1px solid black;
+  padding-left: 2px;
+  padding-right: 2px;
 }
 
 .menu-hover-lines li:first-child a {
@@ -146,7 +151,9 @@
 }
 
 .menu-hover-lines li.active > a {
-  background-color: transparent;
+  /* background-color: transparent; */
+  background: rgba(255, 229, 204, 0.3);
+  border: 1px solid black;
 }
 
 .menu-hover-lines a:before,
@@ -155,7 +162,7 @@
   position: absolute;
   content: '';
   transition: all 0.35s ease;
-  background-color: #A62222;
+  background-color: #98a52a;
   width: 0;
 }
 
@@ -210,8 +217,7 @@
   height: 100%;
   position: absolute;
   top: 0;
-  left: 0;
-  background-image: url(../images/spices.jpg);
+  left: 0; 
   background-repeat: no-repeat;
   background-size: cover;
   z-index: -1;
