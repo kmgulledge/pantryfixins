@@ -118,20 +118,35 @@ function displayResults(pantry) {
     })
 }
 
-$(function(){
-  init();
+var availableTags = [];
 
-  // Fill Ingredients DD
-  $("#ingredientsDD").autocomplete({
-    source: availableTags
+function getIngredients() {
+  // console.log("Starting getIngredients");
+  $.ajax({
+    async: true,
+    url: '../data/ingredients.json',
+    data: "",
+    accepts: 'application/json',
+    dataType: 'json',
+    success: function (data) {
+      console.log("getIngredients was a success");
+      try{
+        for (var i = 0; i < data.length; i++) {
+          availableTags.push(data[i].ingredient);
+        }
+      } catch (err) {}
+      console.log("inner tags:", availableTags);
+    }
   });
-})
+}// getIngredients();
 
 $(function () {
-  
-    console.log("tags:", availableTags);
-  
-    $("#ingredientsDD").autocomplete({
-      source: availableTags
-    });
+
+  init()
+  // console.log("tags:", availableTags);
+  getIngredients();
+
+  $("#itemAddToPantry").autocomplete({
+    source: availableTags
   });
+});
