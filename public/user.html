@@ -1,15 +1,18 @@
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
+
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Page</title>
-    <link rel="stylesheet" href="css/foundation.css">
-    <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Homemade+Apple" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Page</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="css/foundation.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Homemade+Apple" rel="stylesheet">
 </head>
+
 <body id="user">
 <ul class="menu menu-hover-lines">
   <!-- <li class="active"><a href="../../index.pug">Home</a></li> -->
@@ -26,27 +29,28 @@
       <!-- <a class="button primary expanded" href="#">Contact Me</a> -->
       <form id="pantryForm" method="post" action="/pantry">
           <label id="enterIng">Ingredients
-              <input type="text" id="item" class="form-control" name="item" placeholder="Enter Ingredients">
+              <input type="text" id="itemAddToPantry" class="form-control" name="item" placeholder="Enter Ingredients">
           </label>
 
          <label id="enterQty">Quantity
               <input type="text" id="quantity" class="form-control" name="quantity" placeholder="Enter Quantity">
           </label>
-         <button id="addToPantry" type="submit" class="success button">Add To My Pantry</button>
-      </form>
+          <button id="addToPantry" type="submit" class="success button">Add To My Pantry</button>
+        </form>
+      </div>
+    </div>
+    <div class="columns small-12 medium-7 portfolio-resume-scrolling">
+      <h3 id="pantryIngredients">Ingredients List</h3>
+      <ul class="portfolio-resume-side-list" id="pantryDiv" style="list-style: none">
+
     </div>
   </div>
-  <div class="columns small-12 medium-7 portfolio-resume-scrolling">
-    <h3 id="pantryIngredients">Ingredients List</h3>
-    <ul class="portfolio-resume-side-list" id="pantryDiv" style="list-style: none">
-      
-  </div>
-</div>
 
-<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://codepen.io/ZURBFoundation/pen/jmYLwq"></script>
-<script src="./js/profile.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="js/profile.js"></script>
+
 
 </body>
+
 </html>

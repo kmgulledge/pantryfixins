@@ -1,103 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 </head>
+
 <body>
 
 
 
-<form action="/action_page.php">
-  Add one ingredient at a time!
+    <form action="/action_page.php">
+        Add one ingredient at a time!
 
-  <br>
-  <input type="text" id="ingredientsForRecipe" name="Ingredient" placeholder="Add ingredient here">
-  <br>
-  <input type="text" id="ingredientQuantity" name="Ingredient" placeholder="Add quantity">
-  
-  <input type="submit" value="Submit" id="ingredientSubmitBtn">
-</form> 
+        <br>
+        <input type="text" id="ingredientsForRecipe" name="Ingredient" placeholder="Add ingredient here">
+        new item below
+        <input id="ingredientsDD" />
+        <br>
+        <input type="text" id="ingredientQuantity" name="Ingredient" placeholder="Add quantity">
 
-
-
-
-
-<form action="/action_page.php">
-  Enter instructions one step at a Time!
-
-  <br>
-  <input type="text" id="instructionsInput" name="Ingredient" placeholder="Add instructions here one at a time!">
-  <br>
-  
-  
-  <input type="submit" value="Submit" id="instructionsSubmitBtn">
-</form> 
+        <input type="submit" value="Submit" id="ingredientSubmitBtn">
+    </form>
 
 
-<div id ="ingredientsDiv">
-
-</div>
-
-<p>Hello</p>
-
-<button id="finalizeRecipe">Finalize Recipe</button>
 
 
-<script>
-var recipeObject = {
-	// quantity: 0,
-	ingredients:[],
-	instructions:[]
-}
 
-var ingredientArray = [];
+    <form action="/action_page.php">
+        Enter instructions one step at a Time!
 
-
-$("#ingredientSubmitBtn").click(function(){
-	event.preventDefault();
-	var newIngredient = {
-		quantity: 0,
-		ingredient: ""
-	}
-	var ingredient = document.getElementById("ingredientsForRecipe").value;
-	newIngredient.ingredient = ingredient;
-	var quantity = document.getElementById("ingredientQuantity").value;
-	newIngredient.quantity = quantity;
-
-	recipeObject.ingredients.push(newIngredient);
-	
-// This appends to the div below so that the user can see what ingredients they've entered. 
-	document.getElementById("ingredientsDiv").append(quantity + " " +ingredient+ " ");
-	
-// This is resetting the values of the inputs to 0
-	document.getElementById("ingredientQuantity").value = "";
-	document.getElementById("ingredientsForRecipe").value = "";
-	console.log(recipeObject);
-});
- 
-
- $("#instructionsSubmitBtn").click(function(){
-	event.preventDefault();
-	var instruction = document.getElementById("instructionsInput").value;
-	recipeObject.instructions.push(instruction)
-	document.getElementById("ingredientsDiv").append(instruction)
-	document.getElementById("instructionsInput").value = ""
-});
-
-  $("#finalizeRecipe").click(function(){
-	event.preventDefault();
-	console.log(recipeObject);
-	ingredientArray.push(recipeObject);
-	console.log(ingredientArray);
-
-	});
-// for each ingredient push 
+        <br>
+        <input type="text" id="instructionsInput" name="Ingredient" placeholder="Add instructions here one at a time!">
+        <br>
 
 
-</script>
-<script type="text/javascript"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <input type="submit" value="Submit" id="instructionsSubmitBtn">
+    </form>
+
+
+    <div id="ingredientsDiv">
+
+    </div>
+
+    <p>Hello</p>
+
+    <button id="finalizeRecipe">Finalize Recipe</button>
+
+
+    <script>
+        var recipeObject = {
+            // quantity: 0,
+            ingredients: [],
+            instructions: []
+        }
+
+        var ingredientArray = [];
+
+
+        $("#ingredientSubmitBtn").click(function () {
+            event.preventDefault();
+            var newIngredient = {
+                quantity: 0,
+                ingredient: ""
+            }
+            var ingredient = document.getElementById("ingredientsForRecipe").value;
+            newIngredient.ingredient = ingredient;
+            var quantity = document.getElementById("ingredientQuantity").value;
+            newIngredient.quantity = quantity;
+
+            recipeObject.ingredients.push(newIngredient);
+
+            // This appends to the div below so that the user can see what ingredients they've entered. 
+            document.getElementById("ingredientsDiv").append(quantity + " " + ingredient + " ");
+
+            // This is resetting the values of the inputs to 0
+            document.getElementById("ingredientQuantity").value = "";
+            document.getElementById("ingredientsForRecipe").value = "";
+            console.log(recipeObject);
+        });
+
+
+        $("#instructionsSubmitBtn").click(function () {
+            event.preventDefault();
+            var instruction = document.getElementById("instructionsInput").value;
+            recipeObject.instructions.push(instruction)
+            document.getElementById("ingredientsDiv").append(instruction)
+            document.getElementById("instructionsInput").value = ""
+        });
+
+        $("#finalizeRecipe").click(function () {
+            event.preventDefault();
+            console.log(recipeObject);
+            ingredientArray.push(recipeObject);
+            console.log(ingredientArray);
+
+        });
+    </script>
+    <script type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
+
 </html>

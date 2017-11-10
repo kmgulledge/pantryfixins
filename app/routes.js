@@ -68,35 +68,6 @@ module.exports = function (app, passport) {
   // we will want this protected so you have to be logged in to visit
   // we will use route middleware to verify this (the isLoggedIn function)
   app.get('/profile', isLoggedIn, function (req, res) {
-    
-    // This will be needed if using PUG
-    // res.sendFile(path.join(__dirname, "../public/profile.html"));
-    
-    // var myPantry = [];
-    // console.log("user", req.user.local.username);
-
-    // db.pantries.find({ user: req.user.local.username}, function(err, data) {
-    //   // Log any errors if the server encounters one
-    //   if (err) {
-    //     console.log("err", err);
-    //   }
-    //   // Otherwise, send the result of this query to the browser
-    //   else {
-    //     for (var i = 0; i < data.length; i++) {
-    //       var eachItem = {
-    //         item: data[i].item,
-    //         quantity: data[i].quantity
-    //       };
-    //       myPantry.push(eachItem);
-    //     }
-    //   }
-    //   console.log("My Pantry currently has: ", myPantry);
-    // });
-    // res.render('profile.pug', {
-    //   "user": req.user
-    // //   "Pantry": myPantry
-    // });// end res.render()
-
     res.sendFile(path.join(__dirname, "../public/user.html"));
   });// end app.get('/profile')
 

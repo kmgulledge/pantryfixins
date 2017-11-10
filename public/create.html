@@ -8,6 +8,7 @@
     <title>User Page</title>
     <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Homemade+Apple" rel="stylesheet">
 </head>
@@ -41,13 +42,15 @@
                     <input type="submit" value="Submit" id="infoSubmitBtn" class="success button">
                 </form>
 
-            <form action="/action_page.php">
-                <br>
-                <br> Add one ingredient at a time!
-                <input type="text" id="ingredientsForRecipe" name="Ingredient" placeholder="Add ingredient here">
-                <input type="text" id="ingredientQuantity" name="IngredientQty" placeholder="Add quantity">
-                <input type="submit" value="Submit" id="ingredientSubmitBtn" class="success button">
-            </form>
+        <form action="/action_page.php">
+            <br>
+            <br> Add one ingredient at a time!
+
+            <input type="text" id="ingredientsForRecipe" name="Ingredient" placeholder="Add ingredient here">
+            <!-- <input id="ingredientsForRecipe" /> -->
+            <input type="text" id="ingredientQuantity" name="IngredientQty" placeholder="Add quantity">
+            <input type="submit" value="Submit" id="ingredientSubmitBtn" class="success button">
+        </form>
 
             <form action="/action_page.php">
                 Enter instructions one step at a Time!
@@ -80,7 +83,8 @@
     <script src="js/vendor/what-input.js"></script>
     <script src="js/vendor/foundation.js"></script>
     <script src="js/app.js"></script>
-
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="js/createRecipe.js"></script>
 </body>
 </body>

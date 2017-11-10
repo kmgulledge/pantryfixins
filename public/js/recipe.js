@@ -204,7 +204,8 @@ function getIngredients() {
 
 $(function () {
 
-  console.log("tags:", availableTags);
+  // console.log("tags:", availableTags);
+  getIngredients();
 
   $("#ingredientsDD").autocomplete({
     source: availableTags

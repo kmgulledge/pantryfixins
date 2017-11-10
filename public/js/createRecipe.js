@@ -3,6 +3,7 @@ var title = document.getElementById("recipeName").value;
 // var cuisine = document.getElementById("recipeCuisine").value;
 var image_url = document.getElementById("recipeImage").value;
 
+
 // Recipe Object Template
 var recipeObject = {
     title: "",
@@ -35,7 +36,7 @@ $("#ingredientSubmitBtn").click(function () {
     var newIngredient = {
         quantity: 0,
         ingredient: ""
-    }
+    };
     // var title = document.getElementById("recipeName").value;
     // var cuisine = document.getElementById("recipeCuisine").value;
     // var image_url = document.getElementById("recipeImage").value;
@@ -60,8 +61,8 @@ $("#ingredientSubmitBtn").click(function () {
 $("#instructionSubmitBtn").click(function () {
     event.preventDefault();
     var instruction = document.getElementById("instructionInput").value;
-    recipeObject.instructions.push(instruction)
-    $("#instructions").append("<li>" + instruction + "</li>")
+    recipeObject.instructions.push(instruction);
+    $("#instructions").append("<li>" + instruction + "</li>");
     document.getElementById("instructionInput").value = "";
 });
 
@@ -93,5 +94,37 @@ $("#finalizeRecipe").click(function () {
         error: function () {
             // alert("fuck");
         }
-    })
+    });
 }); 
+
+var availableTags = [];
+
+function getIngredients() {
+    console.log("Starting getIngredients");
+    $.ajax({
+      async: true,
+      url: '../data/ingredients.json',
+      data: "",
+      accepts: 'application/json',
+      dataType: 'json',
+      success: function (data) {
+        console.log("getIngredients was a success");
+        try{
+          for (var i = 0; i < data.length; i++) {
+            availableTags.push(data[i].ingredient);
+          }
+        } catch (err) {}
+        // console.log("inner tags:", availableTags);
+      }
+    });
+  }// getIngredients();
+  
+  $(function () {
+  
+    // console.log("tags:", availableTags);
+    getIngredients();
+  
+    $("#ingredientsForRecipe").autocomplete({
+      source: availableTags
+    });
+  });
