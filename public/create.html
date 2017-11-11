@@ -11,40 +11,39 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Homemade+Apple" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text" rel="stylesheet">
 </head>
 
 <body id="create">
     <ul class="menu menu-hover-lines">
         <!-- <li class="active"><a href="../../index.pug">Home</a></li> -->
         <li><a href="user.html">My Pantry</a></li>
+        <li><a href="recipe.html">My Recipes</a></li>
         <li><a href="create.html">Create a Recipe</a></li>
-        <li><a href="recipe.html">Saved Recipes</a></li>
-        <li><a href="/recipenow">Make A Recipe Now</a></li>
+        <li><a href="/recipenow">Prepare a Recipe</a></li>
     </ul>
 
     <div id="createImage" class="portfolio-resume-scrolling-container row">
         <div class="columns small-12 medium-5 portfolio-resume-overview">
-            <div class="portfolio-resume-overview-content">
-                    <p id="createTitle">Create Recipes</p>
-            </div>
+            <h3 id="createTitle" class="portfolio-resume-name">Create a Recipe</h3>
         </div>
+    </div>
 
         <div id="createRecipe">
 
-                <h3 class="portfolio-resume-name">Hello Pantry Chef</h3>
-                <p>Create Your Own Recipes</p>
+                <!-- <h3 id="createheading" class="portfolio-resume-name">Add a Recipe!</h3> -->
                 <!-- <a class="button primary expanded" href="#">Contact Me</a> -->
-                <form action="/action_page.php"> Recipe Title
+                <form action="/action_page.php"> <p class="formTitles"> Recipe Title</p>
                     <input type="text" id="recipeName" name="recipeName" placeholder="Insert a title for this Recipe">
                     <!-- <input type="text" id="recipeCuisine" name="recipeCuisine" placeholder="Choose a Cuisine for this Recipe"> -->
-                    Recipe Image
+                    <p class="formTitles">Recipe Image</p>
                     <input type="text" id="recipeImage" name="recipeImage" placeholder="Insert a link to an image for this Recipe">
                     <input type="submit" value="Submit" id="infoSubmitBtn" class="success button">
                 </form>
 
         <form action="/action_page.php">
             <br>
-            <br> Add one ingredient at a time!
+            <br> <p class="formTitles">Add one ingredient at a time!</p>
 
             <input type="text" id="ingredientsForRecipe" name="Ingredient" placeholder="Add ingredient here">
             <!-- <input id="ingredientsForRecipe" /> -->
@@ -53,7 +52,7 @@
         </form>
 
             <form action="/action_page.php">
-                Enter instructions one step at a Time!
+                <p class="formTitles">Enter instructions one step at a Time!</p>
                 <input type="text" id="instructionInput" name="Ingredient" placeholder="Add instructions here one at a time!">
                 <input type="submit" value="Submit" id="instructionSubmitBtn" class="success button">
             </form>
@@ -64,11 +63,11 @@
             <div class="basic-card-content" id="recipeTitle"></div>
             <div class="basic-card-image" id="recipePic"></div>
 
-            <div class="basic-card-content content callout secondary">
+            <div id="ingredAdded" class="basic-card-content content callout secondary">
                 <h5>Ingredients</h5>
                 <ul style="list-style-type:circle" id="ingredientsDiv"></ul>
             </div>
-            <div class="basic-card-content content callout secondary">
+            <div id="intructAdded" class="basic-card-content content callout secondary">
                 <h5>Cooking Instructions</h5>
                 <ol type="1" id="instructions"> </ol>
             </div>
@@ -78,6 +77,9 @@
             </div>
         </div>
     </div>
+
+    <br>
+    <br>
 
     <script src="js/vendor/jquery.js"></script>
     <script src="js/vendor/what-input.js"></script>

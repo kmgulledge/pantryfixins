@@ -140,8 +140,9 @@
   font-weight: bold;
   position: relative;
   margin-left: 1rem;
-  background: rgba(255, 229, 204, 0.3);
+  background: #E0E0E0;
   border: 1px solid black;
+  border-radius: 4px;
   padding-left: 2px;
   padding-right: 2px;
 }
@@ -152,7 +153,6 @@
 
 .menu-hover-lines li.active > a {
   /* background-color: transparent; */
-  background: rgba(255, 229, 204, 0.3);
   border: 1px solid black;
 }
 
