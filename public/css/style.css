@@ -138,7 +138,7 @@ label {
 
 /* Create Recipe*/
 
-#create {
+#create, #make {
   background-color: #A0A0A0;
 }
 
@@ -168,3 +168,4 @@ label {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
