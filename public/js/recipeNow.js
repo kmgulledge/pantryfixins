@@ -18,10 +18,9 @@ function displayRecipes(recipe) {
     recipe.forEach(function (item, idx) {
         console.log("item:", item);
         console.log("idx:", idx);
-        $("#recipeNowDiv").append("<a href='/recipe/" + item._id + "'><div class='recipeDiv'><img src="+ item.image_url + " alt=" + item.title + "><div>" + item.title + "</div>");
+        $("#recipeNowDiv").append("<a href='/recipe/" + item._id + "'><div class='recipeDiv'><img src="+ item.image_url + " alt=" + item.title + "><div>" + item.title + "</div></div></a>");
     });
 }
-
 
 $(function () {
     console.log("should run init");
