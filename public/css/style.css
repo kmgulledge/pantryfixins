@@ -126,7 +126,13 @@ label {
   font-size: 48px;
   background: rgba(255, 229, 204, 0.3);
   border: 1px solid black;
-} 
+}
+
+#itemTitle {
+  font-family: 'Lobster', cursive;
+  padding-top: 10px;
+  font-size: 20px;
+}
 
 #item, #quantity {
   border-radius: 4px;
@@ -151,7 +157,7 @@ label {
   font-size: 86px;
 }
 
-#createImage {
+#createImage, #makeImage {
   background-image: url(../images/recipe-book.jpg);  
   background-repeat: no-repeat;
   background-size: cover;
@@ -169,3 +175,21 @@ label {
   background-size: cover;
 }
 
+#recipeNowDiv {
+  background-color: #A0A0A0;
+  padding: 50px;
+  margin-left: 50px;
+
+}
+
+.recipeDiv{
+  display: inline-block;
+  width: 200px;
+  height: 125px;
+  margin: 10px;
+  text-align: center;
+}
+
+#makeRecipe {
+  border: 3px solid white;
+}
