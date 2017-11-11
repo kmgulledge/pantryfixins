@@ -96,6 +96,10 @@
   font-family: 'Homemade Apple', cursive;
   border-radius: 4px;
   font-size: 20px;
+  border: 0.5px solid black;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 5px;
 }
 
 .callout:hover { 
@@ -115,7 +119,7 @@
 
 #userTitle {
   font-family: 'Homemade Apple', cursive;
-  font-size: 86px;
+  font-size: 66px;
   margin-right: 5%;
   background: rgba(224, 224, 224, 0.3);
   border: 1.5px solid black;
@@ -136,17 +140,11 @@ label {
 
 #pantryIngredients {
   font-family: 'Homemade Apple', cursive;
-  margin-left: 5%;
-  font-size: 48px;
+  font-size: 38px;
   padding-bottom: 10px;
   padding-top: 10px;
   text-decoration: underline;
-  /* background: #E0E0E0;
-  border: 1px solid black; */
 } 
-  background: rgba(255, 229, 204, 0.3);
-  border: 1px solid black;
-}
 
 #itemTitle {
   font-family: 'Lobster', cursive;
@@ -160,6 +158,15 @@ label {
 
 #enterIng, #enterQty {
   background: rgba(224, 224, 224, 0.3);
+  border-radius: 4px;
+}
+
+#pantryDiv {
+  border: 10px solid #E0E0E0;
+  box-shadow: 0 0 0 2pt #404040;
+  padding: 5%;
+  width: 70%;
+  margin: auto;
   border-radius: 4px;
 }
 
@@ -177,12 +184,9 @@ label {
 
 #createTitle {
   font-family: 'Homemade Apple', cursive;
-  font-size: 86px;
+  font-size: 66px;
   margin-right: 5%;
-  background: white;
-  border: 1.5px solid black;
-  border-radius: 10px;
-  opacity: 0.7;
+  margin-top: 20%;
 }
 
 #createheading {
@@ -256,4 +260,26 @@ label {
    border-radius: 10px;
    width: 75%;
    height: 75%;
+}
+
+#makeTitle {
+  font-family: 'Homemade Apple', cursive;
+  font-size: 66px;
+  margin-right: 5%;
+  margin-top: 20%;
+}
+
+#ingredientQuantity, #recipeName, #recipeImage, #ingredientsForRecipe, #instructionInput {
+  border: 0.5px solid black;
+  border-radius: 4px;
+}
+
+/* Recipe Now*/
+
+.basic-card {
+  border: 1px solid black;
+}
+
+.basic-card-content.content.callout.secondary {
+  overflow: hidden;
 }
