@@ -6,13 +6,21 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Make a recipe right now.</title>
-    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="css/app.css"> -->
+    <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Homemade+Apple" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Lobster|Pacifico|Satisfy" rel="stylesheet">
 </head>
 
-<body>
+<body id="make">
     <ul class="menu menu-hover-lines">
         <li><a href="user.html">My Pantry</a></li>
         <li><a href="recipe.html">My Recipes</a></li>
@@ -20,25 +28,24 @@
         <li><a href="/recipenow">Prepare a Recipe</a></li>
     </ul>
 
-    <div class="portfolio-resume-scrolling-container row">
+    <div id="makeImage" class="portfolio-resume-scrolling-container row">
         <div class="columns small-12 medium-5 portfolio-resume-overview">
-            <h3 id="userTitle" class="portfolio-resume-name">My Recipes</h3>
             <div class="portfolio-resume-overview-content">
-                <!-- <a class="button primary expanded" href="#">Contact Me</a> -->
+                <p id="createTitle">Make Recipes</p>
             </div>
         </div>
     </div>
     <br>
 
-        <div id="recipeNowDiv" class="basic-card">
+     <div id="recipeNowDiv"> 
 
-        </div>
+    </div>
 
-        <script src="js/vendor/jquery.js"></script>
-        <script src="js/vendor/what-input.js"></script>
-        <script src="js/vendor/foundation.js"></script>
-        <script src="js/app.js"></script>
-        <script src="./js/recipeNow.js"></script>
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/what-input.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+    <script src="js/app.js"></script>
+    <script src="./js/recipeNow.js"></script>
 
 </body>
 
