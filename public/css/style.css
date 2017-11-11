@@ -179,17 +179,21 @@ label {
   background-color: #A0A0A0;
   padding: 50px;
   margin-left: 50px;
+  margin-right: 50px;
 
 }
 
 .recipeDiv{
   display: inline-block;
   width: 200px;
-  height: 125px;
+  height: 130px;
   margin: 10px;
   text-align: center;
 }
 
-#makeRecipe {
-  border: 3px solid white;
+#imgRecipe {
+   border: 3px solid white;
+   border-radius: 10px;
+   width: 75%;
+   height: 75%;
 }
