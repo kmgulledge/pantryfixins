@@ -75,6 +75,12 @@ module.exports = function (app, passport) {
   // =====   Recipes   ====================================
   // ======================================================
 
+  app.get("/recipe/:id", function(req, res) {
+    var condition = "id = " + req.params.id;
+    console.log("condition", condition);
+    res.render('recipe.pug');
+  })
+
   app.get('/recipenow', isLoggedIn, function(req, res) {
 
     // Grab everything and put them in an array to use to search against

@@ -2,10 +2,10 @@ console.log("Opened up recipe.js")
 
 getIngredients();
 
-// Variables that will hold the recipe attributes
-var title = document.getElementById("recipeName").value;
-var cuisine = document.getElementById("recipeCuisine").value;
-var image_url = document.getElementById("recipeImage").value;
+// // Variables that will hold the recipe attributes
+// var title = document.getElementById("recipeName").value;
+// var cuisine = document.getElementById("recipeCuisine").value;
+// var image_url = document.getElementById("recipeImage").value;
 
 // Recipe Object Template
 var recipeObject = {
@@ -206,8 +206,10 @@ $(function () {
 
   // console.log("tags:", availableTags);
   getIngredients();
-
+  getRecipe();
   $("#ingredientsDD").autocomplete({
     source: availableTags
   });
 });
+
+
