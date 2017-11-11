@@ -138,14 +138,12 @@ label {
   font-family: 'Homemade Apple', cursive;
   margin-left: 5%;
   font-size: 48px;
-<<<<<<< HEAD
   padding-bottom: 10px;
   padding-top: 10px;
   text-decoration: underline;
   /* background: #E0E0E0;
   border: 1px solid black; */
 } 
-=======
   background: rgba(255, 229, 204, 0.3);
   border: 1px solid black;
 }
@@ -155,7 +153,6 @@ label {
   padding-top: 10px;
   font-size: 20px;
 }
->>>>>>> cad241456033eb5fd9661e9781d3453cd79f7a5e
 
 #item, #quantity {
   border-radius: 4px;
