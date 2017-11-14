@@ -24,10 +24,10 @@ module.exports = function (app, passport) {
   // ======================================================
   // =====   Home Page   ==================================
   // ======================================================
-
+  
+  // Show the home page
   app.get('/', function (req, res) {
     res.render('index.pug');
-    // res.sendFile(path.join(__dirname, "../public/index.html")); // load the index.pug file
   });// end app.get('/')
 
   // ======================================================
@@ -178,7 +178,7 @@ module.exports = function (app, passport) {
     console.log("Adding Recipe", req.body);
 
     newRecipe = new Recipe();
-    newRecipe.author = "me";
+    newRecipe.author = req.user.local.username;
     newRecipe.title = req.body.title;
     newRecipe.cuisine = req.body.cuisine;
     newRecipe.image_url = req.body.image_url;
@@ -483,3 +483,7 @@ function getAllRecipes() {
 //   // return allRecipes;
 // }// end getAllRecipes()
 
+
+
+// Changelog
+// 11/13/17 21:24 CS When user adds a new recipe, the author now becomes the user that is signed in.
