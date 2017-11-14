@@ -20,7 +20,7 @@ var session = require('express-session');
 //=========================================================
 
 // Log requests to the console
-app.use(logger('dev'));
+app.use(logger('tiny'));
 
 // Reads Cookies for login Auth
 app.use(cookieParser());
