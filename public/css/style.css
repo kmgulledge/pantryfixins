@@ -221,8 +221,14 @@ label {
   overflow-x: hidden;
 }
 
-#createImage, #makeImage {
+#createImage {
   background-image: url(../images/recipe-book.jpg);  
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#makeImage {
+  background-image: url(../images/recipe-book3.jpg);  
   background-repeat: no-repeat;
   background-size: cover;
 }
