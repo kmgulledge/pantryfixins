@@ -19,7 +19,7 @@ var session = require('express-session');
 //=====   Configure Express App   =========================
 //=========================================================
 
-// Log every request to the console
+// Log requests to the console
 app.use(logger('dev'));
 
 // Reads Cookies for login Auth
@@ -40,6 +40,7 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));// end app.use(session())
+
 app.use(express.static("public"));
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions

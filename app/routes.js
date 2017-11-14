@@ -1,4 +1,4 @@
-console.log("||\u274c  Opened File [./app/routes.js]");
+console.log("||\u2713  Opened File [./app/routes.js]");
 
 // ========================================================
 // =====   Dependencies   =================================
@@ -24,7 +24,7 @@ module.exports = function (app, passport) {
   // ======================================================
   // =====   Home Page   ==================================
   // ======================================================
-  
+
   // Show the home page
   app.get('/', function (req, res) {
     res.render('index.pug');
@@ -64,8 +64,7 @@ module.exports = function (app, passport) {
   // =====   Profile   ====================================
   // ======================================================
 
-  // we will want this protected so you have to be logged in to visit
-  // we will use route middleware to verify this (the isLoggedIn function)
+  // Once the user signs in bring them to thier profile
   app.get('/profile', isLoggedIn, function (req, res) {
     res.sendFile(path.join(__dirname, "../public/user.html"));
   });// end app.get('/profile')
@@ -74,35 +73,9 @@ module.exports = function (app, passport) {
   // =====   Recipes   ====================================
   // ======================================================
 
-
-  // app.get("/recipe/:id", function (req, res) {
-  //   res.render('recipe.pug', data);
-  // });
-
-  app.get("/recipe/:id", function (req, res) {
-    var idPath = req.params.id;
-    var pathArr = idPath.split('?');
-    var recipeID = pathArr[0];
-    var recipe = {};
-    console.log("recipeID");
-    console.log(recipeID);
-    Recipe.find({ _id: recipeID }, function (err, recipeData) {
-      console.log("Seached the recipe");
-      // Log any errors if the server encounters one
-      if (err) {
-        console.log(err);
-      }// end if()
-      // Else, assign data to allRecipes Variable
-      else {
-        recipe = recipeData[0];
-        console.log("Recipe is:", recipe);
-        res.render('recipe.pug', recipe);
-      }// end else()
-    });// end Recipe.find()
-  });
-
+  // When a user clicks the Prepare a Recipe link, it will search for all recipes
+  // that they can make right now with the current ingredients in stock.
   app.get('/recipenow', isLoggedIn, function (req, res) {
-
     // Grab everything and put them in an array to use to search against
     Pantry.find({ "user": req.user.local.username }, function (err, pantryData) {
       // Log any errors if the server encounters one
@@ -111,7 +84,6 @@ module.exports = function (app, passport) {
       }
       // Otherwise, send the result of this query to the browser
       else {
-        // console.log("Pantry data", pantryData);
         Recipe.find({}, function (err, recipeData) {
           // Log any errors if the server encounters one
           if (err) {
@@ -119,29 +91,20 @@ module.exports = function (app, passport) {
           }// end if()
           // Else, assign data to allRecipes Variable
           else {
-            // console.log("Recipe Data: ", recipeData);
-            // console.log("Pantry Data again: ", pantryData);
-
             var wtf = recipeData.filter((obj, val) => {
-              console.log("-----New Recipe-----:", obj.title);
-              console.log("Recipe Ingredient Length:", obj.ingredients.length);
-              console.log("Value is:", val);
               let temp = [];
               obj.ingredients.forEach(recEl => {
                 pantryData.forEach(panEl => {
                   if (recEl.ingredient == panEl.item) {
-                    // console.log("Recipe Element is in stock?:", recEl);
                     temp.push(recEl);
                   }// end if()
                 });// end pantry.forEach()
               });// end obj.ingredients.forEach()
-              // console.log("Does the recipe count match in pantry?:", temp.length == obj.ingredients.length);
               if (temp.length == obj.ingredients.length) {
                 return obj;
               }// end if()
               // res.json(wtf);
             });// end recipeData.filter
-            // console.log("Recipes Returned:", wtf);
             res.sendFile(path.join(__dirname, "../public/recipeNow.html"));
           }// end else()
         });// end Recipe.find()
@@ -149,34 +112,27 @@ module.exports = function (app, passport) {
     });// end Pantry.find()
   });// end app.get('/recipenow')
 
-  app.get('/recipenow/data', isLoggedIn, function (req, res) {
-
-    getNowRecipes(req, res);
-
-  });// end app.get('/recipenow/data')
-
-  app.get("/pantry", function (req, res) {
-
-    // Run API Function to pull my Pantry
-    getMyPantry(req, res);
-
-  });// end app.post('/pantry')
-
-
-
-
-
-
-  // Get the recipe page to show the selected page
-  app.get('/recipe', isLoggedIn, function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/recipe.html"));
+  // When a user clicks on a specific recipe, show them that recipe
+  app.get("/recipe/:id", isLoggedIn, function (req, res) {
+    var idPath = req.params.id;
+    var pathArr = idPath.split('?');
+    var recipeID = pathArr[0];
+    var recipe = {};
+    Recipe.find({ _id: recipeID }, function (err, recipeData) {
+      // Log any errors if the server encounters one
+      if (err) {
+        console.log(err);
+      }// end if()
+      // Else, assign data to allRecipes Variable
+      else {
+        recipe = recipeData[0];
+        res.render('recipe.pug', recipe);
+      }// end else()
+    });// end Recipe.find()
   });
-
 
   // need to add isLoggedIn middleware into app.post('/recipe')
   app.post('/recipe', function (req, res) {
-    console.log("Adding Recipe", req.body);
-
     newRecipe = new Recipe();
     newRecipe.author = req.user.local.username;
     newRecipe.title = req.body.title;
@@ -184,68 +140,72 @@ module.exports = function (app, passport) {
     newRecipe.image_url = req.body.image_url;
     newRecipe.ingredients = req.body.ingredients;
     newRecipe.instructions = req.body.instructions;
-
+    // Add newRecipe to DB
     newRecipe.save(function (err) {
       if (err)
         throw err;
       return (null, newRecipe);
     });// end newRecipe.save()
-
   });// end app.post('/recipe')  
+
+  // ======================================================
+  // =====   Pantry   =====================================
+  // ======================================================
+
+  app.get("/pantry", function (req, res) {
+    // Run API Function to pull my Pantry
+    getMyPantry(req, res);
+  });// end app.post('/pantry')
+
+  app.post('/pantry', function (req, res) {
+    // Run API function to add to my Pantry
+    addToPantry(req, res);
+  });// end app.post('/pantry')
+
+  app.post('/pantry/delete', function (req, res) {
+    // Grab ID of item to delete
+    var ingredientID = req.body.id;
+    // Run MiddleWare function to add to my Pantry
+    removeFromPantry(req, res, ingredientID);
+  });// end app.post('/pantry')
 
   // ======================================================
   // =====   Logout   =====================================
   // ======================================================
 
   app.get('/logout', function (req, res) {
-
     req.logout();
     res.redirect('/');
-
   });// end app.get('/logout')
 
   // ======================================================
-  // =====   Pantry   =====================================
+  // =====   API Routes   =================================
   // ======================================================
 
-  // API Call
-  app.get("/pantry", function (req, res) {
+  app.get('/recipenow/data', isLoggedIn, function (req, res) {
+    getNowRecipes(req, res);
+  });// end app.get('/recipenow/data')
 
+  app.get("/pantry", function (req, res) {
     // Run API Function to pull my Pantry
     getMyPantry(req, res);
-
   });// end app.post('/pantry')
 
-  app.post('/pantry', function (req, res) {
-
-    // Run API function to add to my Pantry
-    addToPantry(req, res);
-
-  });// end app.post('/pantry')
-
-  app.post('/pantry/delete', function (req, res) {
-
-    // Grab ID of item to delete
-    var ingredientID = req.body.id;
-
-    // Run API function to add to my Pantry
-    removeFromPantry(req, res, ingredientID);
-
-  });// end app.post('/pantry')
 };// end module.exports()
 
-// ======================================================
-// =====   API Functions   =======================
-// ======================================================
-function isLoggedIn(req, res, next) {
 
+
+// ======================================================
+// =====   MiddleWare Functions   =======================
+// ======================================================
+
+function isLoggedIn(req, res, next) {
   // if user is authenticated in the session, carry on
   if (req.isAuthenticated())
     return next();
-
   // if they aren't redirect them to the home page
   res.redirect('/');
-}
+}// end isLoggedIn()s
 
 function changeDBQuantity(old, add) {
   var newQty = 0;
@@ -253,131 +213,68 @@ function changeDBQuantity(old, add) {
   return newQty;
 }// end changeDBQuantity()
 
-
 function checkIngredientStock(arr, attr, value) {
   for (var i = 0; i < arr.length; i++) {
     if (arr[i][attr] === value) {
-      console.log("Found: ", value);
+      // Do Something
     } else {
-      console.log("Did not find: ", value);
-    }
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      // Do Something
+    }// end if/else()
+  }// end for()
+}// end checkIngredientStock()
 
 function getMyPantry(req, res) {
   // Query: In our database, go to the animals collection, then "find" everything
   Pantry.find({ "user": req.user.local.username }, function (err, data) {
-
     // Log any errors if the server encounters one
     if (err) {
-
       console.log(err);
-
     }// end if()
-
     // Otherwise, send the result of this query to the browser
     else {
       data = data.sort();
-      console.log("from the db: ", data);
       res.json(data);
-
     }// end else()
-
   });// end Pantry.find
-
 }// end getMyPantry()
 
-
-
 function getMyPantryData(req, res) {
-  // Query: In our database, go to the animals collection, then "find" everything
-  // var myPantry = [];
   Pantry.find({ "user": req.user.local.username }, function (err, data) {
-
     // Log any errors if the server encounters one
     if (err) {
-
       console.log(err);
-
     }// end if()
-
     // Otherwise, send the result of this query to the browser
     else {
-      // console.log("Pantry Data:", data);
-      // console.log("from the db: ", data);
       return data;
-      // console.log("My Pantry has: ", myPantry);
-
     }// end else()
   });// end Pantry.find
   // return myPantry;
 }// end getMyPantry()
 
-
-
-
 function removeFromPantry(req, res, ingredientID) {
-
   Pantry.remove({ _id: ingredientID }, function (err, data) {
     if (err) throw err;
     res.send(data);
   });
-
 }
 
-
-
-
 function addToPantry(req, res) {
-  // console.log("Adding to Pantry", req);
-  // console.log("User is: ", req.user.local.username);
-  // console.log("Item is: ", req.body.item);
   Pantry.find({ "user": req.user.local.username, "item": req.body.item }, function (err, data) {
-    // console.log("Checking if item is already in the Pantry, here is what we data in the database: ", data);
     if (data.length === 0) {
-      // console.log("new item");
-
       newItem = new Pantry();
       newItem.user = req.user.local.username;
       newItem.item = req.body.item;
       newItem.quantity = req.body.quantity;
-
       newItem.save(function (err) {
         if (err)
           throw err;
         return (null, newItem);
       });// end newItem.save()
-
     } else {
-      // console.log("Current Item is currently in stock with: ", data[0].quantity);
       var qtyToAdd = parseFloat(req.body.quantity);
-      // console.log("qtyToAdd is : ", qtyToAdd);
       var oldQty = parseFloat(data[0].quantity);
-      // console.log("oldQty is : ", oldQty);
-      // console.log("quantity should be: ", oldQty + qtyToAdd)
       var newQtyToAddToDB = changeDBQuantity(oldQty, qtyToAdd);
-      // console.log("The db now has a qty of: ", newQtyToAddToDB);
-
       Pantry.update(
         { item: req.body.item },
         {
@@ -394,9 +291,7 @@ function addToPantry(req, res) {
         }// end callback()
       );// end db.pantries.update()
     }// end if/else()
-
     res.redirect("/profile");
-
   });// end db.pantries.find()
 }// end addToPantry()
 
@@ -410,7 +305,6 @@ function getNowRecipes(req, res) {
     }
     // Otherwise, send the result of this query to the browser
     else {
-      // console.log("getNowRecipes Pantry data", pantryData);
       Recipe.find({}, function (err, recipeData) {
         // Log any errors if the server encounters one
         if (err) {
@@ -418,26 +312,19 @@ function getNowRecipes(req, res) {
         }// end if()
         // Else, assign data to allRecipes Variable
         else {
-          // console.log("Recipe Data: ", recipeData);
-          // console.log("Pantry Data again: ", pantryData);
-
           var wtf = recipeData.filter((obj, val) => {
             let temp = [];
             obj.ingredients.forEach(recEl => {
               pantryData.forEach(panEl => {
                 if (recEl.ingredient == panEl.item) {
-                  // console.log("Recipe Element is in stock?:", recEl);
                   temp.push(recEl);
                 }// end if()
               });// end pantry.forEach()
             });// end obj.ingredients.forEach()
-            // console.log("Does the recipe count match in pantry?:", temp.length == obj.ingredients.length);
             if (temp.length == obj.ingredients.length) {
               return obj;
             }// end if()
           });// end recipeData.filter
-
-          // console.log("wtf is:", wtf);
           res.json(wtf);
         }// end else()
       });// end Recipe.find()
@@ -445,45 +332,24 @@ function getNowRecipes(req, res) {
   });// end Pantry.find()
 }// end req, res
 
-
-
-
-
 function getAllRecipes() {
   Recipe.find({}, function (err, data) {
     if (err) {
       console.log(err);
     }
     else {
-      console.log("Recipe Results are:", data);
+      // Do Somthing
     }
   });// end Recipe.find()
 }// end getAllRecipes()
 
 
 
+// ========================================================
+// =====   Changelog   ====================================
+// ========================================================
 
-// function getAllRecipesData() {
-//   var allRecipes = [];
-//   Recipe.find({}, function(err, data){
-//     if (err) {
-//       console.log(err);
-//     }
-//     else {
-//       // data.forEach(function(recipe){
-//         // foo.push(recipe);
-//         allRecipes = data;
-//       });
-
-//       console.log("Foo Data:", foo);
-//       // foo = data;
-//       return allRecipes;
-//     }
-//   });// end Recipe.find()
-//   // return allRecipes;
-// }// end getAllRecipes()
-
-
-
-// Changelog
 // 11/13/17 21:24 CS When user adds a new recipe, the author now becomes the user that is signed in.
+// 11/14/17 06:42 CS Cleaned up Code, Categorized Routes, and commented code.
+// 11/14/17 09:27 CS removed all commented and useless console.logs
+// 11/14/17 09:42 CS added isLoggedIn to .get /recipe/:id

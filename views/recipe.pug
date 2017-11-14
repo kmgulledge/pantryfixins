@@ -33,7 +33,10 @@ html(lang='en')
       h5 Ingredients
       ul
         each val in ingredients
-          li=val.quantity +=val.ingredient
+          li=val.quantity
+            | &nbsp;
+            | &nbsp;
+            =val.ingredient
 
     .basic-card-content.content.callout.secondary
       h5 Instructions

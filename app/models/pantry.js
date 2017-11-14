@@ -13,15 +13,12 @@ var pantrySchema = mongoose.Schema({
 pantrySchema.methods.findAll = function(user) {
     Pantry.find({ "user": user }), function (err, data) {
         console.log("Ran findAll()");
-
         if (err) {
             console.log(err);
         }
-
         if (data) {
             console.log(data);
         }
-
     };// end Pantry.find()
 }
 

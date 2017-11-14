@@ -1,4 +1,4 @@
-console.log("||\u274c  Opened File [./config/passport.js]");
+console.log("||\u2713  Opened File [./config/passport.js]");
 
 // ========================================================
 // =====   Dependencies   =================================
@@ -46,7 +46,7 @@ module.exports = function (passport) {
           return done(err);
         // check to see if theres already a user with that email
         if (user) {
-          return done(null, false, req.flash('signupMessage', 'That username is already taken.'));
+          return done(null, false, req.send('That username is already taken.'));
         } else {
           // if there is no user with that email
           // create the user
